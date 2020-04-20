@@ -1,0 +1,41 @@
+//Tutorial followed: https://medium.com/hci-wvu/hello-world-chrome-extension-tutorial-f2a174a5f5c0
+{
+	//The "manifest_version" as of 5/31/18 is the integer 2 no matter what
+"manifest_version": 2,     //required
+	
+	//The "version" is a changeable text field and should be changed when a new version of your extension is created.
+"version": "1.0",               //required
+	
+	//The "name" is a simple text field to display what the extension is called. 
+"name": "Hello World!",   //required
+	
+	//The "description" is an optional text field indicating what te purpose of the chrome extension is.
+"description": "Learning how to make a chrome extension!",
+	
+	//These all seem to be the same images at different sizes or something. The file sizes don't make sense though
+"icons": {
+    	"16": "images/puppy16.png",
+    	"48": "images/puppy48.png",
+    	"128": "images/puppy.png"
+    },
+	
+//A browser_action can be called on any page. 
+//A page_action is a chrome extension that only works on certain websites. 
+//Browser actions have a "default_icon" that is the image you have chosen as your icon.
+//They also have a "default_popup" that is html code for the default popup window for your extension
+"browser_action":
+	{
+	"default_icon": "images/puppy.png",
+        "default_popup": "popup.html"
+	},
+
+	//https://stackoverflow.com/questions/34950009/chrome-extension-refused-to-load-the-script-because-it-violates-the-following-c
+	"content_security_policy": 
+	"script-src 'self' https://cdn.jsdelivr.net https://kit.fontawesome.com https://sohrabsaran.github.io https://jsutil37.github.io https://unpkg.com https://cdnjs.cloudflare.com https://stackpath.bootstrapcdn.com; object-src 'self'",
+	
+	//https://stackoverflow.com/questions/14361061/extension-manifest-must-request-permission-to-access-this-host
+	"permissions" : [
+		"tabs",
+		"<all_urls>"
+	]
+}

@@ -1,0 +1,25 @@
+<!--
+
+
+Materials referenced: http://infoheap.com/chrome-extension-tutorial-access-dom/
+ -->
+<!DOCTYPE html>
+<html style="min-width:300px;min-height:300px;">
+<header>
+	<title>Sohrab Saran - Software Skills Demos - Chrome Browser Extension</title>
+<!--
+See https://developer.chrome.com/extensions/contentSecurityPolicy#JSExecution
+Inline script code execution is not allowed due to security reasons
+-->
+	<script type="module" src="./popup.js"></script>
+</header>
+
+<body>
+	<pre>
+<button type="button" id="runTestButton" 
+class="btn btn-primary">Read/Write Test for Current Page</button>
+</pre>
+	<div id="id1"></div>
+</body>
+
+</html>
