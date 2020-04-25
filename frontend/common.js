@@ -1,6 +1,6 @@
 /*
 START Please preserve this notice
-Copyright sohrabsaran@gmail.com, 2018-20. MIT License.
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
 License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
 Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/frontend/common.js
 deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/frontend/common.js
