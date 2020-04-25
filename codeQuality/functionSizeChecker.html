@@ -45,7 +45,7 @@ Source Code
 			}
 			if(chr=='}') {
 				let lineOfCurlyBracketJustClosed = unclosedCurlyBrackets.pop()
-				let numOfLinesBetweenOpenAndCloseCurlyBraces = lineNumber - lineOfCurlyBracketJustClosed
+				let numOfLinesBetweenOpenAndCloseCurlyBraces = lineNumber - lineOfCurlyBracketJustClosed - 1
 				if(numOfLinesBetweenOpenAndCloseCurlyBraces > maxLinesBetweenBrackets) {
 					resultDiv.innerText = 'Violation: The num of lines between line number ' +
 						lineOfCurlyBracketJustClosed + ' and ' + lineNumber + ' is ' + 
