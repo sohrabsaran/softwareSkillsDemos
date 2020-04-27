@@ -11,6 +11,7 @@ References:
 https://stackoverflow.com/questions/14015899/embed-typescript-code-in-an-html-document
 https://github.com/basarat/typescript-script
 http://plnkr.co/edit/j2pzXw?p=preview
+https://www.tutorialspoint.com/typescript/index.htm
 -->
 <html>
 <head>
@@ -23,7 +24,8 @@ http://plnkr.co/edit/j2pzXw?p=preview
 <body>
   <script type="text/typescript">
   //import "./common.js"//too amibitious, it says 'Uncaught ReferenceError: exports is not defined'
-  alert('It worked???')
+  let message:string = 'It worked???'
+  alert(message)
 </script>
     <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
     <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
