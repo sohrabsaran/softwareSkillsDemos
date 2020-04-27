@@ -1,7 +1,7 @@
 <!DOCTYPE>
 <!-- 
 START Please preserve this notice
-Copyright sohrabsaran@gmail.com, 2018-20. MIT License.
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
 License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
 Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/frontend/typescript/typescriptInBrowserTest.html
 deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/frontend/typescript/typescriptInBrowserTest.html
@@ -23,11 +23,23 @@ https://www.tutorialspoint.com/typescript/index.htm
 </head>
 <body>
   <script type="text/typescript">
-  //import "./common.js"//too amibitious, it says 'Uncaught ReferenceError: exports is not defined'
+  //import "./common.js"//too ambitious, it says 'Uncaught ReferenceError: exports is not defined'
   let message:string = 'It worked???'
-  //debugger //works
-  throw new Error('something went wrong here')
-  alert(message)
+  //debugger //works, chrome breakpoint does not
+  //throw new Error('something went wrong here')//works
+  //alert(message)//works
+  
+  //from https://www.tutorialspoint.com/typescript/typescript_basic_syntax.htm:
+	class Greeting { 
+		greet():void { 
+			alert("Hello World!!!") 
+		}
+	}
+	let obj = new Greeting()
+	obj.greet()
+	obj.someProp = '1'
+	obj.tweet()
+  
 </script>
     <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
     <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
