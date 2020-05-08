@@ -29,13 +29,13 @@ Output:
 	import '../frontend/common.js'
   
   function onTaChange() {
-	  try {
+	  //try {
 	 let syntax = esprima.parse(elVal('ta'));
 	 setElVal('outputTa', JSON.stringify(syntax, null, 4))
-	  }catch(e){
+	  /*}catch(e){
 		  alert('caught exception '+e.stack)
 		  throw e
-	  }
+	  }*/
   }
   exportToWindow(onTaChange)
 </script>
