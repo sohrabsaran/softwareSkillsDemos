@@ -29,10 +29,7 @@ Output:
 	import '../frontend/common.js'
   
   function onTaChange() {
-    //alert(elVal('ta'))
-	 alert('(esprima==null) = ' +(esprima==null))
-	  alert('(esprima.parser==null) = ' +(esprima.parser==null))
-	 var syntax = esprima.parse(elVal('ta'));
+	 let syntax = esprima.parse(elVal('ta'));
 	 setElVal('outputTa', JSON.stringify(syntax, null, 4))
   }
   exportToWindow(onTaChange)
