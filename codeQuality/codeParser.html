@@ -17,17 +17,21 @@ END Please preserve this notice
 </style>
 <!-- open source js parser -->
 <script src="https://cdn.jsdelivr.net/npm/esprima/dist/esprima.min.js"></script>
-
-<script type="module" src="./frontend/common.js"></script>
 </head>
 
 <body>
 <pre>
 Enter html+js or pure js code:
-<textarea id="ta" onchange="alert('onchange')"></textarea>
+<textarea id="ta" onchange="f1()')"></textarea>
 </pre>
-
-
+<script type="module">
+	import '../frontend/common.js'
+  
+  function f1() {
+    alert(elVal('ta'))
+  }
+  exportToWindow(f1)
+</script>
 </body>
 
 </html>
