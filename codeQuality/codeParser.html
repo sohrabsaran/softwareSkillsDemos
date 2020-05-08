@@ -11,9 +11,7 @@ END Please preserve this notice
 
 <head>
 <style>
-/*
-* {width: 99%;}
-*/
+ {width: 99%;}
 </style>
 <!-- open source js parser -->
 <script src="https://cdn.jsdelivr.net/npm/esprima/dist/esprima.min.js"></script>
@@ -22,15 +20,19 @@ END Please preserve this notice
 <body>
 <pre>
 Enter html+js or pure js code:
-<textarea id="ta" onchange="f1()"></textarea>
+<textarea id="ta"  onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)">var answer = 42</textarea>
+
+Output:
+<textarea id="outputTa" readonly style="background-color:lightgrey"></textarea>
 </pre>
 <script type="module">
 	import '../frontend/common.js'
   
-  function f1() {
-    alert(elVal('ta'))
+  function onTaChange() {
+    //alert(elVal('ta'))
+	 var syntax = parser.parse(elVal('ta'));
   }
-  exportToWindow(f1)
+  exportToWindow(onTaChange)
 </script>
 </body>
 
