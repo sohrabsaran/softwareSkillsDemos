@@ -31,6 +31,7 @@ Output:
   function onTaChange() {
     //alert(elVal('ta'))
 	 var syntax = parser.parse(elVal('ta'));
+	 setElVal('outputTa', JSON.stringify(syntax, null, 4))
   }
   exportToWindow(onTaChange)
 </script>
