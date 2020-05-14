@@ -56,7 +56,9 @@ Source Code
 			return a.length - b.length || // sort by length, if equal then
 			a.localeCompare(b);    // sort by dictionary order
 		}).reverse()
-		resultDiv.innerText = JSON.stringify(names, null, 2)
+		resultDiv.innerText = 'Source code length: ' + s.length + ' characters\n' +
+			'length of largest name: '+names[0].length + '\n' +
+			JSON.stringify(names, null, 2)
 	}
 	
 	exportToWindow(onTaChange)
