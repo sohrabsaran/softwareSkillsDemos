@@ -33,7 +33,7 @@ Source Code
 		let lastIdx = s.length - 1
 		for (var i = 0; i <= lastIdx; i++) {
   			let chr = s.charAt(i)
-			if(name='') {
+			if(name=='') {
 				if(isAlpha(chr) || chr=='_') {
 					name+=chr
 				}
@@ -45,7 +45,7 @@ Source Code
 				if((!isNameNonFirstChr) || i == lastIdx)
 				{
 					names[name]=null
-					console.log('Detected name \''+name+'\'')
+					//console.log('Detected name \''+name+'\'')
 					name=''
 				}
 			}
