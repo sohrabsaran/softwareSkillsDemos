@@ -16,9 +16,7 @@ END Please preserve this notice
 </head>
 
 <body>
-<pre>Max lines between brackets
-<input type="text" id="maxLinesBetweenBracketsTextBox" value="5">
-
+<pre>
 Source Code
 <textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
 <div id="resultDiv"></div>
@@ -27,34 +25,37 @@ Source Code
 	import '../frontend/common.js'
 	
 	function onTaChange(){
-		let maxLinesBetweenBrackets = elVal('maxLinesBetweenBracketsTextBox')
 		let resultDiv = el('resultDiv')
-		let unclosedCurlyBrackets = []
 		let s = elVal('ta')
 		s = dos2Unix(s)
-		let lineNumber = 1
-		for (var i = 0; i < s.length; i++) {
+		let names = {}
+		let name = ''
+		let lastIdx = s.length - 1
+		for (var i = 0; i <= lastIdx; i++) {
   			let chr = s.charAt(i)
-			if(chr=='\n') {
-				lineNumber++
-				continue
-			}
-			if(chr=='{') {
-				unclosedCurlyBrackets.push(lineNumber)
-				continue
-			}
-			if(chr=='}') {
-				let lineOfCurlyBracketJustClosed = unclosedCurlyBrackets.pop()
-				let numOfLinesBetweenOpenAndCloseCurlyBraces = lineNumber - lineOfCurlyBracketJustClosed - 1
-				if(numOfLinesBetweenOpenAndCloseCurlyBraces > maxLinesBetweenBrackets) {
-					resultDiv.innerText = 'Violation: The num of lines between line number ' +
-						lineOfCurlyBracketJustClosed + ' and ' + lineNumber + ' is ' + 
-						numOfLinesBetweenOpenAndCloseCurlyBraces
-					return
+			if(name='') {
+				if(isAlpha(chr) || chr=='_') {
+					name+=chr
+				}
+			} else {
+				let isNameNonFirstChr = isAlpha(chr) || chr=='_' || isNumericChr(chr)
+				if(isNameNonFirstChr) {
+					name+=chr
+				}
+				if((!isNameNonFirstChr) || i == lastIdx)
+				{
+					names[name]=name.length
+					name=''
 				}
 			}
 		}
-		resultDiv.innerText = "All curly brace line gaps are <= "+maxLinesBetweenBrackets
+		let names = Object.keys(names)
+		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
+		names.sort(function(a, b) {
+			return a.length - b.length || // sort by length, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		});
+		resultDiv.innerText = JSON.stringify(names, null, 2)
 	}
 	
 	exportToWindow(onTaChange)
