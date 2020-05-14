@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/nameSizeChecker.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/nameSizeChecker.html
+END Please preserve this notice
+-->
+<html>
+
+<head>
+<style>
+* {width: 99%;}
+</style>
+</head>
+
+<body>
+<pre>Max lines between brackets
+<input type="text" id="maxLinesBetweenBracketsTextBox" value="5">
+
+Source Code
+<textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
+<div id="resultDiv"></div>
+</pre>
+<script type="module">
+	import '../frontend/common.js'
+	
+	function onTaChange(){
+		let maxLinesBetweenBrackets = elVal('maxLinesBetweenBracketsTextBox')
+		let resultDiv = el('resultDiv')
+		let unclosedCurlyBrackets = []
+		let s = elVal('ta')
+		s = dos2Unix(s)
+		let lineNumber = 1
+		for (var i = 0; i < s.length; i++) {
+  			let chr = s.charAt(i)
+			if(chr=='\n') {
+				lineNumber++
+				continue
+			}
+			if(chr=='{') {
+				unclosedCurlyBrackets.push(lineNumber)
+				continue
+			}
+			if(chr=='}') {
+				let lineOfCurlyBracketJustClosed = unclosedCurlyBrackets.pop()
+				let numOfLinesBetweenOpenAndCloseCurlyBraces = lineNumber - lineOfCurlyBracketJustClosed - 1
+				if(numOfLinesBetweenOpenAndCloseCurlyBraces > maxLinesBetweenBrackets) {
+					resultDiv.innerText = 'Violation: The num of lines between line number ' +
+						lineOfCurlyBracketJustClosed + ' and ' + lineNumber + ' is ' + 
+						numOfLinesBetweenOpenAndCloseCurlyBraces
+					return
+				}
+			}
+		}
+		resultDiv.innerText = "All curly brace line gaps are <= "+maxLinesBetweenBrackets
+	}
+	
+	exportToWindow(onTaChange)
+</script>
+</body>
+
+</html>
