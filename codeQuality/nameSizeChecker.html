@@ -55,7 +55,7 @@ Source Code
 		names.sort(function(a, b) {
 			return a.length - b.length || // sort by length, if equal then
 			a.localeCompare(b);    // sort by dictionary order
-		});
+		}).reverse()
 		resultDiv.innerText = JSON.stringify(names, null, 2)
 	}
 	
