@@ -1,0 +1,36 @@
+<textarea id="ta" onkeyup="f1()" onpaste="f1()" style="width:100%"></textarea>
+<div id="longSentenceDiv"></div>
+<script type="module">
+	import 'https://jsutil37.github.io/jsutil/util.js'
+	window.f1 = function f1()
+	{
+		let s = el('ta').value
+		s = s.replaceAll('\r\n','\n')
+		s = s.replaceAll('\t','    ')
+		let paragraphs = s.split('\n')
+		for(let i=0;i<paragraphs.length;i++) 
+		{
+			let paragraph = paragraphs[i]
+      
+      //see https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
+      //See also https://regexr.com/ that explains the regex pattern composed
+      //Below should split on either '.' or '(' 
+			let sentences = paragraph.split(/.|\(/)
+      
+      for(let j=0;j<sentences.length;j++)
+			{
+				let sentence = sentences[j]
+				let words = sentence.split(' ')
+				let newWords = []
+				words.forEach((word)=>{if(word!=''){newWords.push(word)}})
+				if(newWords.length > 10) 
+				{
+					el('longSentenceDiv').innerText = newWords.length +
+						' words:\n'+ sentence
+					return
+				}
+			}
+			el('longSentenceDiv').innerText = 'DONE!!!'
+		}
+	}
+</script>
