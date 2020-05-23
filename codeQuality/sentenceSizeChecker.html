@@ -33,7 +33,9 @@ END Please preserve this notice
       //see https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
       //See also https://regexr.com/ that explains the regex pattern composed
       //Below should split on either '.' or '(' 
-			let sentences = paragraph.split(/.|\(/)
+			//let sentences = paragraph.split(/.|\(/) //hmm, bad idea...
+			
+			let sentences = paragraph.split('.')
       
       for(let j=0;j<sentences.length;j++)
 			{
