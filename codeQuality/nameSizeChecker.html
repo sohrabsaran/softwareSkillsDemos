@@ -70,7 +70,8 @@ Source Code
 		namesByFreq.sort(function(a, b) {
 			return names[a] - names[b] || // sort by freq, if equal then
 			a.localeCompare(b);    // sort by dictionary order
-		}).reverse()
+		})
+		namesByFreq.forEach((name,idx)=>{namesByFreq[idx]=name+ ' - ' +  names[name] }) 
 		resultDiv.innerText = 'Source code length: ' + s.length + ' characters\n' +
 			'length of largest name: '+namesByLen[0].length + '\n' +
 			'Names by length:\n' +
