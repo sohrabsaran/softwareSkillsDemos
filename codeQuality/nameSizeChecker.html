@@ -44,21 +44,41 @@ Source Code
 				}
 				if((!isNameNonFirstChr) || i == lastIdx)
 				{
-					names[name]=null
+					if(name in names) {
+						//keep track of the frequency of the name
+						names[name]++
+					} else {
+						names[name]=1
+					}
 					//console.log('Detected name \''+name+'\'')
 					name=''
 				}
 			}
 		}
-		names = Object.keys(names)
+		let namesByLen = Object.keys(names)
 		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
-		names.sort(function(a, b) {
+		namesByLen.sort(function(a, b) {
 			return a.length - b.length || // sort by length, if equal then
 			a.localeCompare(b);    // sort by dictionary order
 		}).reverse()
+		let namesByChrCount = Object.keys(names)
+		namesByChrCount.sort(function(a, b) {
+			return a.length*names[a] - b.length*names[b] || // sort by length*freq, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		}).reverse()
+		let namesByFreq = Object.keys(names)
+		namesByFreq.sort(function(a, b) {
+			return names[a] - names[b] || // sort by freq, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		}).reverse()
 		resultDiv.innerText = 'Source code length: ' + s.length + ' characters\n' +
-			'length of largest name: '+names[0].length + '\n' +
-			JSON.stringify(names, null, 2)
+			'length of largest name: '+namesByLen[0].length + '\n' +
+			'Names by length:\n' +
+			JSON.stringify(namesByLen, null, 2) + '\n' +
+			'Names by character count:\n' +
+			JSON.stringify(namesByChrCount, null, 2) + '\n' +
+			'Names by frequency:\n' +
+			JSON.stringify(namesByFreq, null, 2) + '\n'
 	}
 	
 	exportToWindow(onTaChange)
