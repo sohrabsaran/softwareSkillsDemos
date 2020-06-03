@@ -62,6 +62,7 @@ END Please preserve this notice
 		orderedNames.sort(function(a, b) {
 			return llcsError(a, b);    // sort by how different
 		}).reverse()
+		orderedNames.forEach((nm,idx)=>{orderedNames[idx] += ' - ' + llcsError(nm, srchVal)}
 		resultDiv.innerText = JSON.stringify(orderedNames, null, 2)
 	}
 	exportToWindow(onKeyUpInSrchTbx)
