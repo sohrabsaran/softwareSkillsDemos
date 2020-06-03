@@ -17,10 +17,12 @@ END Please preserve this notice
 	import '../frontend/common.js'
 	import 'https://jsutil37.github.io/jsutil/diffUtil.js'
 	let names
+	let srcCode
 	function onTaChange(){
 		let resultDiv = el('resultDiv')
 		let s = elVal('ta')
 		s = dos2Unix(s)
+		srcCode = s
 		names = {}
 		let name = ''
 		let lastIdx = s.length - 1
@@ -60,12 +62,46 @@ END Please preserve this notice
 		let orderedNames = Object.keys(names)
 		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
 		orderedNames.sort(function(a, b) {
-			return llcsError(a, srchVal) - llcsError(b, srchVal);    // sort by how different
+			return llcsError(a, srchVal) - llcsError(b, srchVal) ||    // sort by how different
+				a.localeCompare(b)   // if equal, then sort by dictionary order
 		})
-		orderedNames.forEach((nm,idx)=>{orderedNames[idx] += ' - ' + llcsError(nm, srchVal)})
+		//orderedNames.forEach((nm,idx)=>{orderedNames[idx] += ' - ' + llcsError(nm, srchVal)})
 		resultDiv.innerText = JSON.stringify(orderedNames, null, 2)
 	}
 	exportToWindow(onKeyUpInSrchTbx)
+		
+	function viewCallerTree() {
+		let name = elVal('srchTbx')
+		if(!(name in names)){resultDiv.innerText='name \'' + name + '\' not found';return}
+		let locations = names[name]
+		resultDiv.innerText = drawCallerTree(locations, {})
+	}
+	
+	function drawCallerTree(locations, encNms) {
+		let s = ''
+		locations.forEach(location=> {
+			let callingFn = getNameOfFnContainingLocation(location)
+			s+='called from line '+lineOf(location)
+			if(!callingFn) {return}
+			s+=' (function '+callingFn+'())\n'
+			if(callingFn in encNms){return}
+			encNms[callingFn]=null
+			let locations = names[callingFn]
+			s+=indented(drawCallerTree(locations, encNms))
+		})
+		return s
+	}
+	
+	function getNameOfFnContainingLocation(location) {
+		let srcCodeTillLocation = s.substr(0,location+1)
+		let srcCodeAfterFunctionKeyword = s.rightOfLast('function')
+		return srcCodeAfterFunctionKeyword.leftOf('(').trim()
+	}
+		
+	function lineOf(location) {
+			let srcCodeTillLocation = s.substr(0,location+1)
+			return srcCodeTillLocation.split('\n').length
+	}
 </script>
 </head>
 
@@ -75,6 +111,7 @@ Source Code
 <textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
 Search for Name
 <input type="text" id="srchTbx" onkeyup="onKeyUpInSrchTbx()">
+<button type="button" onclick="viewCallerTree()">View caller tree</button>
 <div id="resultDiv"></div>
 </pre>
 </body>
