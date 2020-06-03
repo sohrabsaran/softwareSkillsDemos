@@ -82,7 +82,7 @@ END Please preserve this notice
 		locations.forEach(location=> {
 			let callingFn = getNameOfFnContainingLocation(location)
 			s+='called from line '+lineOf(location)
-			if(!callingFn) {return}
+			if(!callingFn) {s+='\n';return}
 			s+=' (function '+callingFn+'())\n'
 			if(callingFn in encNms){return}
 			encNms[callingFn]=null
