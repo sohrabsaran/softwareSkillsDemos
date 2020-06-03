@@ -81,7 +81,7 @@ END Please preserve this notice
 	
 	function drawCallerTree(name, locations, encNms, lvl) {
 		let s = ''
-		locations.forEach(location=> {
+		locations.forEach((location, idx)=> {
 			let callingFn
 			try{
 				callingFn = getNameOfFnContainingLocation(location, name)
@@ -95,6 +95,7 @@ END Please preserve this notice
 			encNms[callingFn]=null
 			let locations = names[callingFn]
 			s+=indented(drawCallerTree(callingFn, locations, encNms, lvl+1),(lvl+1)+'')
+			s+='(finished drawing caller tree for location idx ' + idx + ', lvl '+lvl+')\n'
 		})
 		return s
 	}
