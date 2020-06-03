@@ -75,27 +75,27 @@ END Please preserve this notice
 		let name = elVal('srchTbx')
 		if(!(name in names)){resultDiv.innerText='name \'' + name + '\' not found';return}
 		let locations = names[name]
-		resultDiv.innerText = drawCallerTree(locations, {})
+		resultDiv.innerText = drawCallerTree(name, locations, {})
 	}
 	exportToWindow(viewCallerTree)
 	
-	function drawCallerTree(locations, encNms) {
+	function drawCallerTree(name, locations, encNms) {
 		let s = ''
 		locations.forEach(location=> {
-			let callingFn = getNameOfFnContainingLocation(location)
+			let callingFn = getNameOfFnContainingLocation(location, name)
 			s+='called from line '+lineOf(location)
 			if(!callingFn) {s+='\n';return}
 			s+=' (function '+callingFn+'())\n'
 			if(callingFn in encNms){return}
 			encNms[callingFn]=null
 			let locations = names[callingFn]
-			s+=indented(drawCallerTree(locations, encNms))
+			s+=indented(drawCallerTree(callingFn, locations, encNms))
 		})
 		return s
 	}
 	
-	function getNameOfFnContainingLocation(location) {
-		let srcCodeTillLocation = srcCode.substr(0,location+1)
+	function getNameOfFnContainingLocation(location, name) {
+		let srcCodeTillLocation = srcCode.substr(0,location + name.length - 1)
 		let srcCodeAfterFunctionKeyword = srcCodeTillLocation.rightOfLast('function')
 		return srcCodeAfterFunctionKeyword.leftOf('(').trim()
 	}
