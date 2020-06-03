@@ -16,12 +16,12 @@ END Please preserve this notice
 	<script type="module">
 	import '../frontend/common.js'
 	import 'https://jsutil37.github.io/jsutil/diffUtil.js'
-	
+	let names
 	function onTaChange(){
 		let resultDiv = el('resultDiv')
 		let s = elVal('ta')
 		s = dos2Unix(s)
-		let names = {}
+		names = {}
 		let name = ''
 		let lastIdx = s.length - 1
 		for (var i = 0; i <= lastIdx; i++) {
