@@ -82,7 +82,12 @@ END Please preserve this notice
 	function drawCallerTree(name, locations, encNms) {
 		let s = ''
 		locations.forEach(location=> {
-			let callingFn = getNameOfFnContainingLocation(location, name)
+			let callingFn
+			try{
+				callingFn = getNameOfFnContainingLocation(location, name)
+			}catch(e) {
+				if(e.message=='location of function declaration') {return}
+			}
 			s+='called from line '+lineOf(location)
 			if(!callingFn) {s+='\n';return}
 			s+=' (function '+callingFn+'())\n'
@@ -97,7 +102,8 @@ END Please preserve this notice
 	function getNameOfFnContainingLocation(location, name) {
 		let srcCodeTillLocation = srcCode.substr(0, location + name.length)
 		let srcCodeAfterFunctionKeyword = srcCodeTillLocation.rightOfLast('function')
-		return srcCodeAfterFunctionKeyword.leftOf('(').trim()
+		if(srcCodeAfterFunctionKeyword.includes('(')){return srcCodeAfterFunctionKeyword.leftOf('(').trim()}
+		throw new Error('location of function declaration')
 	}
 		
 	function lineOf(location) {
