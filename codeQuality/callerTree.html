@@ -16,8 +16,8 @@ END Please preserve this notice
 	<script type="module">
 	import '../frontend/common.js'
 	import 'https://jsutil37.github.io/jsutil/diffUtil.js'
-	let names
-	let srcCode
+	let names = {}
+	let srcCode = ''
 	function onTaChange(){
 		let resultDiv = el('resultDiv')
 		let s = elVal('ta')
