@@ -95,7 +95,7 @@ END Please preserve this notice
 	}
 	
 	function getNameOfFnContainingLocation(location, name) {
-		let srcCodeTillLocation = srcCode.substr(0,location + name.length - 1)
+		let srcCodeTillLocation = srcCode.substr(0, location + name.length)
 		let srcCodeAfterFunctionKeyword = srcCodeTillLocation.rightOfLast('function')
 		return srcCodeAfterFunctionKeyword.leftOf('(').trim()
 	}
