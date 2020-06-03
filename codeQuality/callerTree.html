@@ -95,7 +95,7 @@ END Please preserve this notice
 			if(callingFn in encNms){return}
 			encNms[callingFn]=null
 			let locations = names[callingFn]
-			s+=+'\n'+indented(drawCallerTree(callingFn, locations, encNms, lvl+1))//,(lvl+1)+'')
+			s+='\n'+indented(drawCallerTree(callingFn, locations, encNms, lvl+1))//,(lvl+1)+'')
 			//s+='(finished drawing caller tree for location idx ' + idx + ', lvl '+lvl+')\n'
 		})
 		return s
