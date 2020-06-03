@@ -61,7 +61,7 @@ END Please preserve this notice
 		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
 		orderedNames.sort(function(a, b) {
 			return llcsError(a, srchVal) - llcsError(b, srchVal);    // sort by how different
-		}).reverse()
+		})
 		orderedNames.forEach((nm,idx)=>{orderedNames[idx] += ' - ' + llcsError(nm, srchVal)})
 		resultDiv.innerText = JSON.stringify(orderedNames, null, 2)
 	}
