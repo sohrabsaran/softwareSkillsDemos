@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/callerTree.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/callerTree.html
+END Please preserve this notice
+-->
+<html>
+
+<head>
+<style>
+* {width: 99%;}
+</style>
+</head>
+
+<body>
+<pre>
+Source Code
+<textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
+<div id="resultDiv"></div>
+</pre>
+<script type="module">
+	import '../frontend/common.js'
+	import 'https://jsutil37.github.io/jsutil/diffUtil.js'
+	
+	function onTaChange(){
+		let resultDiv = el('resultDiv')
+		let s = elVal('ta')
+		s = dos2Unix(s)
+		let names = {}
+		let name = ''
+		let lastIdx = s.length - 1
+		for (var i = 0; i <= lastIdx; i++) {
+  			let chr = s.charAt(i)
+			if(name=='') {
+				if(isAlpha(chr) || chr=='_') {
+					name+=chr
+				}
+			} else {
+				let isNameNonFirstChr = isAlpha(chr) || chr=='_' || isNumericChr(chr)
+				if(isNameNonFirstChr) {
+					name+=chr
+				}
+				if((!isNameNonFirstChr) || i == lastIdx)
+				{
+					if(name in names) {
+						//keep track of the locations of the name
+						names[name].push(i-name.length+((i==lastIdx)?1:0))
+					} else {
+						names[name]=[
+					}
+					//console.log('Detected name \''+name+'\'')
+					name=''
+				}
+			}
+		}
+		
+		
+	}
+	
+	exportToWindow(onTaChange)
+	
+	function onKeyUpInSrchTbx() {
+		let srchVal = elVal('srchTbx')
+		let orderedNames = Object.keys(names)
+		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
+		orderedNames.sort(function(a, b) {
+			return a.localeCompare(b);    // sort by dictionary order
+		})
+	}
+</script>
+<input type="text" id="srchTbx" onkeyup="onKeyUpInSrchTbx()">
+</body>
+
+</html>
