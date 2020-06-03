@@ -45,11 +45,12 @@ Source Code
 				}
 				if((!isNameNonFirstChr) || i == lastIdx)
 				{
+					let idxOfName = i-name.length+((i==lastIdx)?1:0)
 					if(name in names) {
 						//keep track of the locations of the name
-						names[name].push(i-name.length+((i==lastIdx)?1:0))
+						names[name].push(idxOfName)
 					} else {
-						names[name]=[
+						names[name]=[idxOfName]
 					}
 					//console.log('Detected name \''+name+'\'')
 					name=''
@@ -67,8 +68,9 @@ Source Code
 		let orderedNames = Object.keys(names)
 		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
 		orderedNames.sort(function(a, b) {
-			return a.localeCompare(b);    // sort by dictionary order
-		})
+			return llcsError(a, b);    // sort by how different
+		}).reverse()
+		resultDiv.innerText = JSON.stringify(orderedNames, null, 2)
 	}
 </script>
 <input type="text" id="srchTbx" onkeyup="onKeyUpInSrchTbx()">
