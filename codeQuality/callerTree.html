@@ -76,6 +76,7 @@ END Please preserve this notice
 		let locations = names[name]
 		resultDiv.innerText = drawCallerTree(locations, {})
 	}
+	exportToWindow(viewCallerTree)
 	
 	function drawCallerTree(locations, encNms) {
 		let s = ''
