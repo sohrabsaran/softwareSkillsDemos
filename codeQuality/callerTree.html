@@ -75,11 +75,11 @@ END Please preserve this notice
 		let name = elVal('srchTbx')
 		if(!(name in names)){resultDiv.innerText='name \'' + name + '\' not found';return}
 		let locations = names[name]
-		resultDiv.innerText = drawCallerTree(name, locations, {})
+		resultDiv.innerText = drawCallerTree(name, locations, {}, 0)
 	}
 	exportToWindow(viewCallerTree)
 	
-	function drawCallerTree(name, locations, encNms) {
+	function drawCallerTree(name, locations, encNms, lvl) {
 		let s = ''
 		locations.forEach(location=> {
 			let callingFn
@@ -88,13 +88,13 @@ END Please preserve this notice
 			}catch(e) {
 				if(e.message=='location of function declaration') {return}
 			}
-			s+='called from line '+lineOf(location)
+			s+=name+'() (level '+lvl+') is called from line '+lineOf(location)
 			if(!callingFn) {s+='\n';return}
 			s+=' (function '+callingFn+'())\n'
 			if(callingFn in encNms){return}
 			encNms[callingFn]=null
 			let locations = names[callingFn]
-			s+=indented(drawCallerTree(callingFn, locations, encNms))
+			s+=indented(drawCallerTree(callingFn, locations, encNms, lvl+1))
 		})
 		return s
 	}
