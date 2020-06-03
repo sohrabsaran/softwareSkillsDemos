@@ -95,16 +95,15 @@ END Please preserve this notice
 	}
 	
 	function getNameOfFnContainingLocation(location) {
-		let srcCodeTillLocation = s.substr(0,location+1)
-		let srcCodeAfterFunctionKeyword = s.rightOfLast('function')
+		let srcCodeTillLocation = srcCode.substr(0,location+1)
+		let srcCodeAfterFunctionKeyword = srcCodeTillLocation.rightOfLast('function')
 		return srcCodeAfterFunctionKeyword.leftOf('(').trim()
 	}
 		
 	function lineOf(location) {
-			let srcCodeTillLocation = s.substr(0,location+1)
-			return srcCodeTillLocation.split('\n').length
+		let srcCodeTillLocation = s.substr(0,location+1)
+		return srcCodeTillLocation.split('\n').length
 	}
-	if(performance.now -2 == 3){viewCallerTree()}
 </script>
 </head>
 
