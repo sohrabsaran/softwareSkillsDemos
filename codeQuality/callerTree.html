@@ -10,18 +10,10 @@ END Please preserve this notice
 <html>
 
 <head>
-<style>
-* {width: 99%;}
-</style>
-</head>
-
-<body>
-<pre>
-Source Code
-<textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
-<div id="resultDiv"></div>
-</pre>
-<script type="module">
+	<style>
+		* {width: 99%;}
+	</style>
+	<script type="module">
 	import '../frontend/common.js'
 	import 'https://jsutil37.github.io/jsutil/diffUtil.js'
 	
@@ -73,7 +65,17 @@ Source Code
 		resultDiv.innerText = JSON.stringify(orderedNames, null, 2)
 	}
 </script>
+</head>
+
+<body>
+<pre>
+Source Code
+<textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
+
+Search for Name
 <input type="text" id="srchTbx" onkeyup="onKeyUpInSrchTbx()">
+<div id="resultDiv"></div>
+</pre>
 </body>
 
 </html>
