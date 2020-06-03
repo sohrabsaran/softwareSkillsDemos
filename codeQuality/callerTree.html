@@ -88,7 +88,7 @@ END Please preserve this notice
 			}catch(e) {
 				if(e.message=='location of function declaration') {return}
 			}
-			if(s!=''){s+='n'}
+			if(s!=''){s+='\n'}
 			s+=name+'() (level '+lvl+') is called from line '+lineOf(location)
 			if(!callingFn) {return}
 			s+=' (function '+callingFn+'())'
