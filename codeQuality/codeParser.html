@@ -29,11 +29,12 @@ Output:
 	import '../frontend/common.js'
 	let outputDiv = el('outputDiv')
 	function onTaChange() {
-	try {
-		let syntax = esprima.parse(elVal('ta'))
-		outputDiv.innerText = JSON.stringify(syntax, null, 4)
-	} catch(e){
-	   outputDiv.innerText = e.stack
+		try {
+			let syntax = esprima.parse(elVal('ta'))
+			outputDiv.innerText = JSON.stringify(syntax, null, 4)
+		} catch(e){
+		   outputDiv.innerText = e.stack
+		}
 	}
 	exportToWindow(onTaChange)
 </script>
