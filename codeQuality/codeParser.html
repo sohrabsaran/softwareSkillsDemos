@@ -23,21 +23,19 @@ Enter html+js or pure js code:
 <textarea id="ta"  onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)">var answer = 42</textarea>
 
 Output:
-<textarea id="outputTa" readonly style="background-color:lightgrey"></textarea>
+<div id="outputDiv"></div>
 </pre>
 <script type="module">
 	import '../frontend/common.js'
-  
-  function onTaChange() {
-	  //try {
-	 let syntax = esprima.parse(elVal('ta'));
-	 setElVal('outputTa', JSON.stringify(syntax, null, 4))
-	  /*}catch(e){
-		  alert('caught exception '+e.stack)
-		  throw e
-	  }*/
-  }
-  exportToWindow(onTaChange)
+	let outputDiv = el('outputDiv')
+	function onTaChange() {
+	try {
+		let syntax = esprima.parse(elVal('ta'))
+		outputDiv.innerText = JSON.stringify(syntax, null, 4)
+	} catch(e){
+	   outputDiv.innerText = e.stack
+	}
+	exportToWindow(onTaChange)
 </script>
 </body>
 
