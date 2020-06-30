@@ -29,9 +29,13 @@ Source Code
 	function onTaChange(){
 		let maxLinesBetweenBrackets = elVal('maxLinesBetweenBracketsTextBox')
 		let resultDiv = el('resultDiv')
-		let unclosedCurlyBrackets = []
 		let s = elVal('ta')
+		resultDiv.innerText = getMaxLinesBetweenBracketsViolationText(s,maxLinesBetweenBrackets)
+	}
+	
+	function getMaxLinesBetweenBracketsViolationText(s,maxLinesBetweenBrackets) {
 		s = dos2Unix(s)
+		let unclosedCurlyBrackets = []
 		let lineNumber = 1
 		for (var i = 0; i < s.length; i++) {
   			let chr = s.charAt(i)
@@ -47,14 +51,13 @@ Source Code
 				let lineOfCurlyBracketJustClosed = unclosedCurlyBrackets.pop()
 				let numOfLinesBetweenOpenAndCloseCurlyBraces = lineNumber - lineOfCurlyBracketJustClosed - 1
 				if(numOfLinesBetweenOpenAndCloseCurlyBraces > maxLinesBetweenBrackets) {
-					resultDiv.innerText = 'Violation: The num of lines between line number ' +
+					return 'Violation: The num of lines between line number ' +
 						lineOfCurlyBracketJustClosed + ' and ' + lineNumber + ' is ' + 
 						numOfLinesBetweenOpenAndCloseCurlyBraces
-					return
 				}
 			}
 		}
-		resultDiv.innerText = "All curly brace line gaps are <= "+maxLinesBetweenBrackets
+		return "All curly brace line gaps are <= "+maxLinesBetweenBrackets
 	}
 	
 	exportToWindow(onTaChange)
