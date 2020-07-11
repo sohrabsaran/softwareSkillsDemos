@@ -110,7 +110,8 @@ ${//in below LOC, print out file content
 
         //in below LOC, changed forEach to asyncForEach
       }).asyncForEach(onBlobRead);
-      pre.textContent = fileStructure;
+      //pre.textContent = fileStructure;
+      selElVal('ta',fileStructure)
 
       blobs.filter((blob) => {
         return blob.type.startsWith('image/');
