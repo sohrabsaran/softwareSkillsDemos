@@ -112,6 +112,7 @@ ${//in below LOC, print out file content
       }).asyncForEach(onBlobRead);
       //pre.textContent = fileStructure;
       setElVal('ta',fileStructure)
+      el('ta').dispatchEvent(new Event('input'))
 
       blobs.filter((blob) => {
         return blob.type.startsWith('image/');
