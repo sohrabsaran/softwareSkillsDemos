@@ -20,7 +20,9 @@ import {
   directoryOpen,
   fileSave,
   imageToBlob,
-} from 'https://unpkg.com/browser-nativefs';
+} from 'https://unpkg.com/browser-nativefs'
+
+let fileStructure
 
 (async () => {
   const openButton = document.querySelector('#open');
@@ -94,7 +96,7 @@ ${//in below LOC, print out file content
       const blobs = await directoryOpen({ recursive: true });
       //const blobs = await directoryOpen();
 
-      let fileStructure = '';
+      fileStructure = ''
 
       //added 'await' to the below LOC:
       await blobs.sort((a, b) => {
