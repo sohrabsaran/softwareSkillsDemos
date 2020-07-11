@@ -73,6 +73,20 @@ import {
       await fn(this[i], i);
     }
   };
+  
+  async function onBlobRead(blob) {
+      // The Native File System API currently reports the `webkitRelativePath`
+      // as empty string `''`.
+      fileStructure += `/* ${blob.webkitRelativePath}${
+                      blob.webkitRelativePath.endsWith(blob.name) ?
+                      ('blob.webkitRelativePath('+blob.webkitRelativePath+
+                        ') does not end with blob.name('+blob.name+')') : 
+                      blob.name
+          } */
+${//in below LOC, print out file content
+      await blob.text()}
+`
+  }
 
   openDirectoryButton.addEventListener('click', async () => {
     try {
@@ -94,15 +108,7 @@ import {
         return 0;
 
         //in below LOC, changed forEach to asyncForEach
-      }).asyncForEach(async (blob) => {
-        // The Native File System API currently reports the `webkitRelativePath`
-        // as empty string `''`.
-        fileStructure += `${blob.webkitRelativePath}${
-          blob.webkitRelativePath.endsWith(blob.name) ?
-
-            //in below LOC, print out file content
-            '' : blob.name}, content: ${await blob.text()}\n`;
-      });
+      }).asyncForEach(onBlobRead);
       pre.textContent = fileStructure;
 
       blobs.filter((blob) => {
