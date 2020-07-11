@@ -79,10 +79,10 @@ let fileStructure
   async function onBlobRead(blob) {
       // The Native File System API currently reports the `webkitRelativePath`
       // as empty string `''`.
-      fileStructure += `/* ${blob.webkitRelativePath}${
+      fileStructure += `/* Content of File ${blob.webkitRelativePath}${
                       blob.webkitRelativePath.endsWith(blob.name) ? '' :
-                      ('blob.webkitRelativePath(\''+blob.webkitRelativePath+
-                        '\') does not end with blob.name(\''+blob.name+'\')')
+                      ('(error/limitation?: blob.webkitRelativePath(\''+blob.webkitRelativePath+
+                        '\') does not end with blob.name(\''+blob.name+'\'))')
           } */
 ${//in below LOC, print out file content
       await blob.text()}
