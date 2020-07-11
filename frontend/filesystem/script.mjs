@@ -80,10 +80,9 @@ let fileStructure
       // The Native File System API currently reports the `webkitRelativePath`
       // as empty string `''`.
       fileStructure += `/* ${blob.webkitRelativePath}${
-                      blob.webkitRelativePath.endsWith(blob.name) ?
-                      ('blob.webkitRelativePath('+blob.webkitRelativePath+
-                        ') does not end with blob.name('+blob.name+')') : 
-                      blob.name
+                      blob.webkitRelativePath.endsWith(blob.name) ? '' :
+                      ('blob.webkitRelativePath(\''+blob.webkitRelativePath+
+                        '\') does not end with blob.name(\''+blob.name+'\')')
           } */
 ${//in below LOC, print out file content
       await blob.text()}
