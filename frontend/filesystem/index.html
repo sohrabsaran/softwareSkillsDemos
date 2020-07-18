@@ -30,7 +30,7 @@
     console.log('After import')
     let style = document.createElement('style')
     style.innerHTML = /*css*/`:not(img) {width:100%; margin-top:2px;margin-bottom:2px;}`
-    waitForSymbol('isUtilCssLoaded',()=>{document.head.appendChild(style);/*alert('applied style now!');*/},200,10000)
+    waitForSymbol(()=>{document.head.appendChild(style);/*alert('applied style now!');*/},'isUtilCssLoaded',200,10000)
     console.log('reached end')
   </script>
 </head>
