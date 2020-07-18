@@ -29,7 +29,7 @@
     console.log('After import')
     let style = document.createElement('style')
     style.innerHTML = /*css*/`:not(img) {width:100%; margin-top:5px;margin-bottom:5px;}`
-    document.head.appendChild(style)
+    setTimeout(()=>{document.head.appendChild(style);alert('applied style now!');},5000) 
     console.log('reached end')
   </script>
 </head>
