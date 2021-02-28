@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script type="module" src="../../common.js"></script>
+  </head>
+  <body>
+    <pre>
+    This page is an adaption of the example given <a href="https://reactjs.org/docs/add-react-to-a-website.html#add-react-in-one-minute">here</a>.
+    
+    This page demonstrates using React using just thee Github web interface, i.e: 
+      - We can edit code in Github online editor and changes will be automatically deployed to github pages.
+      - There is no upload, download, local dev env etc. needed. This is fast for prototyping. 
+    
+    On the other hand, React libs are loaded without removing unwanted parts. So production websites will be slower to load.
+    For JSX support without building we have to use babel, which again increases the loading time and maybe degrades performance beyond just the website loading performance. 
+    Also Babel seems to have some issues with the ES6 import and export syntax.
+    Alternatives are to directly use React.createElement() (simple, straightforward) or to use https://github.com/developit/htm
+    
+    </pre>
+
+    <!-- We will put our React component inside this div. -->
+    <div id="like_button_container"></div>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". 
+    TODO: what exactly are the difference between the two versions?
+    -->
+    <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+    
+    <!-- 
+        From https://reactjs.org/docs/add-react-to-a-website.html#optional-try-react-with-jsx
+        The quickest way to try JSX in your project is to add the following script:
+    -->
+    <!-- 
+    <script src="https://unpkg.com/babel-standalone@latest/babel.min.js" crossorigin="anonymous"></script>
+    -->
+  
+    <!--
+        Now you can use JSX in any <script> tag by adding type="text/babel" attribute to it.
+    -->
+   <!-- <script type="text/babel" data-plugins="transform-es2015-modules-umd">//type="module" -->
+   <script type="module">
+    import LikeButton from './LikeButton.js';
+    const domContainer = document.querySelector('#like_button_container');
+
+    //see https://reactjs.org/docs/react-api.html#createelement
+    //You will not typically invoke React.createElement() directly if you are using JSX.
+    //However as per https://reactjs.org/docs/react-without-jsx.html you may need build env for JSX.
+    ReactDOM.render(React.createElement(LikeButton), domContainer);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/frontend/typescript/typescriptInBrowserTest.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/frontend/typescript/typescriptInBrowserTest.html
+END Please preserve this notice
+
+References:
+https://stackoverflow.com/questions/14015899/embed-typescript-code-in-an-html-document
+https://github.com/basarat/typescript-script
+http://plnkr.co/edit/j2pzXw?p=preview
+https://www.tutorialspoint.com/typescript/index.htm
+-->
+<html>
+<head>
+<style>
+/*
+* {width: 99%;}
+*/
+</style>
+</head>
+<body>
+  <script type="text/typescript">
+  //import "./common.js"//too ambitious, it says 'Uncaught ReferenceError: exports is not defined'
+  let message:string = 'It worked???'
+  //debugger //works, chrome breakpoint does not
+  //throw new Error('something went wrong here')//works
+  //alert(message)//works
+  
+  //from https://www.tutorialspoint.com/typescript/typescript_basic_syntax.htm:
+	class Greeting { 
+		greet():void { 
+			alert("Hello World!!!") 
+		}
+	}
+	let obj = new Greeting()
+	obj.greet()
+	obj.someProp = '1'//works, but ideally it should not have????
+	//obj.tweet()//compiler catches the error
+  
+</script>
+    <script src="https://rawgit.com/Microsoft/TypeScript/master/lib/typescriptServices.js"></script>
+    <script src="https://rawgit.com/basarat/typescript-script/master/transpiler.js"></script>
+</body>
+</html>

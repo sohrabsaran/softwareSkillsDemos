@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/frontend/html5Canvas/CanvasTest.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/frontend/html5Canvas/CanvasTest.html
+END Please preserve this notice
+-->
+<html>
+<body>
+<canvas id="myCanvas" style="border:1px solid #d3d3d3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script type="module">
+import * as u from 'https://jsutil37.github.io/jsutil/util.js'
+let canvas = el("myCanvas");
+let numOfRows = 80
+let numOfCols = 38
+let squareWidthInPixels = 15
+let squareHeightInPixels = squareWidthInPixels
+canvas.width = numOfCols * squareWidthInPixels
+canvas.height = numOfRows * squareWidthInPixels
+let ctx = canvas.getContext("2d");
+ctx.lineWidth=1;
+let x1 = 0
+let y1 = 0
+let x2 = canvas.width
+let y2 = y1
+
+//draw horizontal lines
+for(let i=0;i<=numOfRows;i++)
+{
+	y1 = i * squareHeightInPixels
+	y2 = y1
+	ctx.moveTo(x1,y1)
+	ctx.lineTo(x2,y2)
+	ctx.stroke()
+}
+
+//draw vertical lines
+y1 = 0
+y2 = canvas.height
+for(let i=0;i<=numOfCols;i++)
+{
+	x1 = i * squareWidthInPixels
+	x2 = x1
+	ctx.moveTo(x1,y1)
+	ctx.lineTo(x2,y2)
+	ctx.stroke()
+}
+</script>
+
+</body>
+</html>

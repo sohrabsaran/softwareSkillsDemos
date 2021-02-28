@@ -1,0 +1,40 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
+<table>
+	<tr>
+	   <td>
+			<canvas id="myChart1" height="300" width="300"></canvas>
+		</td>
+	   <td>
+		   <button onclick="zoomIn()">Zoom in to latest values</button><br>
+		   <button onclick="zoomOut()">Zoom out of latest values</button>
+		</td>
+	</tr>
+</table>
+<script>
+let data = [{x: 0,y: 5}, {x: 5,y: 10}, {x: 8, y: 5}, {x: 15, y: 0}] 
+let chart = new Chart(document.getElementById("myChart1"), {
+   type: 'scatter',
+   data: {
+      datasets: [{
+         label: "Graph of Y-axis var vs time",
+         data,
+      }]
+   },
+   options: {
+      responsive: false
+   }
+});
+let removedValues = []
+
+function zoomIn(){
+	if(data.length==2){alert('You cannot zoom in further');return}
+	removedValues.push(data.shift())
+	chart.update()
+}
+	
+function zoomOut(){
+	if(removedValues.length==0){alert('You cannot zoom out further');return}
+	data.unshift(removedValues.pop())
+	chart.update()
+}
+</script>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/nameSizeChecker.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/nameSizeChecker.html
+END Please preserve this notice
+-->
+<html>
+
+<head>
+<style>
+* {width: 99%;}
+</style>
+</head>
+
+<body>
+<pre>
+Source Code
+<textarea id="ta" onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)"></textarea>
+<div id="resultDiv"></div>
+</pre>
+<script type="module">
+	import '../frontend/common.js'
+	
+	function onTaChange(){
+		let resultDiv = el('resultDiv')
+		let s = elVal('ta')
+		s = dos2Unix(s)
+		let names = {}
+		let name = ''
+		let lastIdx = s.length - 1
+		for (var i = 0; i <= lastIdx; i++) {
+  			let chr = s.charAt(i)
+			if(name=='') {
+				if(isAlpha(chr) || chr=='_') {
+					name+=chr
+				}
+			} else {
+				let isNameNonFirstChr = isAlpha(chr) || chr=='_' || isNumericChr(chr)
+				if(isNameNonFirstChr) {
+					name+=chr
+				}
+				if((!isNameNonFirstChr) || i == lastIdx)
+				{
+					if(name in names) {
+						//keep track of the frequency of the name
+						names[name]++
+					} else {
+						names[name]=1
+					}
+					//console.log('Detected name \''+name+'\'')
+					name=''
+				}
+			}
+		}
+		let namesByLen = Object.keys(names)
+		//ref: https://stackoverflow.com/questions/10630766/how-to-sort-an-array-based-on-the-length-of-each-element
+		namesByLen.sort(function(a, b) {
+			return a.length - b.length || // sort by length, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		}).reverse()
+		let namesByChrCount = Object.keys(names)
+		namesByChrCount.sort(function(a, b) {
+			return a.length*names[a] - b.length*names[b] || // sort by length*freq, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		}).reverse()
+		let namesByFreq = Object.keys(names)
+		namesByFreq.sort(function(a, b) {
+			return names[a] - names[b] || // sort by freq, if equal then
+			a.localeCompare(b);    // sort by dictionary order
+		})
+		namesByFreq.forEach((name,idx)=>{namesByFreq[idx]=name+ ' - ' +  names[name] }) 
+		resultDiv.innerText = 'Source code length: ' + s.length + ' characters\n' +
+			'length of largest name: '+namesByLen[0].length + '\n' +
+			'Names by length:\n' +
+			JSON.stringify(namesByLen, null, 2) + '\n' +
+			'Names by character count:\n' +
+			JSON.stringify(namesByChrCount, null, 2) + '\n' +
+			'Names by frequency:\n' +
+			JSON.stringify(namesByFreq, null, 2) + '\n'
+	}
+	
+	exportToWindow(onTaChange)
+</script>
+</body>
+
+</html>

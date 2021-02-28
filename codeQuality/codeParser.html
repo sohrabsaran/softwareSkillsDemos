@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020, MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/codeParser.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/codeParser.html
+END Please preserve this notice
+-->
+<html>
+
+<head>
+<style>
+ * {width: 99%;}
+</style>
+<!-- open source js parser -->
+<script src="https://cdn.jsdelivr.net/npm/esprima/dist/esprima.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+<pre>
+Enter html+js or pure js code:
+<textarea id="ta"  onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)">var answer = 42</textarea>
+
+Output:
+<div id="outputDiv"></div>
+</pre>
+<script type="module">
+	import '../frontend/common.js'
+	let outputDiv = el('outputDiv')
+	function onTaChange() {
+		try {
+			let syntax = esprima.parse(elVal('ta'))
+			outputDiv.innerText = JSON.stringify(syntax, null, 4)
+		} catch(e){
+		   outputDiv.innerText = e.stack
+		}
+	}
+	exportToWindow(onTaChange)
+</script>
+</body>
+
+</html>
+

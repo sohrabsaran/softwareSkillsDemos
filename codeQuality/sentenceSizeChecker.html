@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!-- 
+START Please preserve this notice
+Copyright sohrabsaran@gmail.com, 2020. MIT License.
+License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
+Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/sentenceSizeChecker.html
+deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/sentenceSizeChecker.html
+END Please preserve this notice
+-->
+<html>
+
+<head>
+<style>
+* {width: 99%;}
+</style>
+</head>
+
+<body>
+<textarea id="ta" onkeyup="f1()" onpaste="f1()" style="width:100%"></textarea>
+<div id="longSentenceDiv"></div>
+<script type="module">
+	import '../frontend/common.js'
+	window.f1 = function f1()
+	{
+		let s = el('ta').value
+		s = s.replaceAll('\r\n','\n')
+		s = s.replaceAll('\t','    ')
+		let paragraphs = s.split('\n')
+		for(let i=0;i<paragraphs.length;i++) 
+		{
+			let paragraph = paragraphs[i]
+      
+      //see https://stackoverflow.com/questions/650022/how-do-i-split-a-string-with-multiple-separators-in-javascript
+      //See also https://regexr.com/ that explains the regex pattern composed
+      //Below should split on either '.' or '(' 
+			//let sentences = paragraph.split(/.|\(/) //hmm, bad idea...
+			
+			let sentences = paragraph.split('.')
+      
+      for(let j=0;j<sentences.length;j++)
+			{
+				let sentence = sentences[j]
+				let words = sentence.split(' ')
+				let newWords = []
+				words.forEach((word)=>{if(word!=''){newWords.push(word)}})
+				if(newWords.length > 10) 
+				{
+					el('longSentenceDiv').innerText = newWords.length +
+						' words:\n'+ sentence
+					return
+				}
+			}
+			el('longSentenceDiv').innerText = 'DONE!!!'
+		}
+	}
+</script>
+</body>
+</html>
