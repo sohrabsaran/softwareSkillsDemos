@@ -11,7 +11,10 @@ END Please preserve this notice
 <html>
 <head>
   <script type="module">
-  import "/softwareSkillsDemos/frontend/common.js"
+  import * from "/softwareSkillsDemos/frontend/common.js"
+    for(const divNm of ['div1','div2']){
+      el('divNm').style.backgroundColor=randLightColor()
+    }
 </script>
   <style>
     i {color:green}
@@ -23,7 +26,7 @@ END Please preserve this notice
   <pre>
 See <a href="https://reactjs.org/docs/create-a-new-react-app.html#create-react-app">here</a> for dev env setup
 
-<hr>
+<div id="div1">
 <button class="btn btn-primary" data-toggle="collapse" data-target="#divForSetupCmdOutp"
 >Output of running the setup command</button>
 <div id="divForSetupCmdOutp" class="collapse">
@@ -59,7 +62,8 @@ We suggest that you begin by typing:
 
 Happy hacking!
 </div>
-<hr>
+</div>
+<div id="div2">
 <button class="btn btn-primary" data-toggle="collapse" data-target="#divForProdBuildCmdOutp"
 >Output of running production build command (npm run build)</button>
 <div id="divForProdBuildCmdOutp" class="collapse">
@@ -87,7 +91,7 @@ Find out more about deployment here:
 
   https://cra.link/deployment
 </div>
-<hr>
+</div>
   </pre>
   </body>
 
