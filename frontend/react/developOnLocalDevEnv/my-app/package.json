@@ -1,6 +1,6 @@
 {
   "name": "my-app",
-  "homepage": "https://sohrabsaran.github.io/softwareSkillsDemos/frontend/react/developOnLocalDevEnv/my-app/deploy",
+  "homepage": "https://sohrabsaran.github.io/softwareSkillsDemos/frontend/react/developOnLocalDevEnv/my-app/build",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
