@@ -12,7 +12,7 @@ END Please preserve this notice
 <head>
   <script type="module">
   import {randLightColor} from "/softwareSkillsDemos/frontend/common.js"
-    for(const divNm of ['div1','div2']){
+    for(const divNm of ['div1','div2','withoutTypescriptDiv']){
       el(divNm).style.backgroundColor=randLightColor()
     }
 </script>
@@ -24,6 +24,11 @@ END Please preserve this notice
 <body>
 
   <pre>
+<div id="withoutTypescriptDiv">
+<button class="btn btn-primary" data-toggle="collapse" data-target="#withoutTypescriptCollapseDiv"
+>Without Typescript</button>
+<div id="withoutTypescriptCollapseDiv" class="collapse">
+
 See <a href="https://reactjs.org/docs/create-a-new-react-app.html#create-react-app">here</a> for dev env setup
 
 <div id="div1">
@@ -90,6 +95,15 @@ You may serve it with a static server:
 Find out more about deployment here:
 
   https://cra.link/deployment
+</div>
+</div>
+</div>
+</div>
+<div id="withTypescriptDiv">
+<button class="btn btn-primary" data-toggle="collapse" data-target="#withTypescriptCollapseDiv"
+>With Typescript</button>
+<div id="withTypescriptCollapseDiv" class="collapse">
+Setup: see <a href="https://create-react-app.dev/docs/adding-typescript/">here</a>.
 </div>
 </div>
   </pre>
