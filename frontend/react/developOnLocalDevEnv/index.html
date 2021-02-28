@@ -13,7 +13,9 @@ END Please preserve this notice
   <script type="module">
   import {randLightColor} from "/softwareSkillsDemos/frontend/common.js"
     for(const divNm of ['div1','div2','withoutTypescriptDiv']){
-      el(divNm).style.backgroundColor=randLightColor()
+      let style = el(divNm).style
+      style.backgroundColor=randLightColor()
+      style.paddingLeft = '5px'
     }
 </script>
   <style>
