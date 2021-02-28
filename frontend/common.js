@@ -6,5 +6,5 @@ Location of this file in its repository: https://github.com/sohrabsaran/software
 deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/frontend/common.js
 END Please preserve this notice
 */
-import "./config.js"
-import "https://jsutil37.github.io/jsutil/util.js"
+export * from "./config.js"
+export * from "https://jsutil37.github.io/jsutil/util.js"
