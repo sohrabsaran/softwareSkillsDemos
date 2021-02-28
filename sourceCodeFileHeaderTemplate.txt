@@ -1,8 +1,0 @@
-<!-- 
-START Please preserve this notice
-Copyright sohrabsaran@gmail.com, 2020. MIT License.
-License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
-Location of this file in its repository: TODO
-deployed at: TODO (use https://jsutil37.github.io/jsutil/devtools/githubDeploymentLocation.html to find the location)
-END Please preserve this notice
--->
