@@ -26,12 +26,17 @@ END Please preserve this notice
     function initCollapsibleDiv(collapsibleDiv) {
       const id = collapsibleDiv.id
       assert(id!=null)
-      const btn = htmlToElement(/*html*/`
-<button class="btn btn-primary" data-toggle="collapse" data-target="#${id}" style="margin-bottom:5px"
+      const outerDiv = htmlToElement(/*html*/`
+<div style="border:1px solid black">
+<button id="${id}btn" class="btn btn-primary" data-toggle="collapse" data-target="#${id}" style="margin-bottom:5px"
 >${htmlEncode('▶ '+collapsibleDiv.dataset.title)}</button>
+</div>
       `)
+      const btn = el(id+'btn')
       const parent = collapsibleDiv.parentElement
-      parent.insertBefore(btn, collapsibleDiv)
+      parent.insertBefore(outerDiv, collapsibleDiv)
+      collapsibleDiv.remove()
+      outerDiv.appendChild(collapsibleDiv)
       collapsibleDiv.classList.add('collapse')
       btn.addEventListener('click',()=>{
         if(btn.innerText.trim().startsWith('▶ ')) {
