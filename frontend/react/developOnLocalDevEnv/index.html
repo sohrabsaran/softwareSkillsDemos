@@ -32,11 +32,11 @@ END Please preserve this notice
 >${htmlEncode('▶ '+collapsibleDiv.dataset.title)}</button>
 </div>
       `)
-      const btn = el(id+'btn')
       const parent = collapsibleDiv.parentElement
       parent.insertBefore(outerDiv, collapsibleDiv)
       collapsibleDiv.remove()
       outerDiv.appendChild(collapsibleDiv)
+      const btn = el(id+'btn')
       collapsibleDiv.classList.add('collapse')
       btn.addEventListener('click',()=>{
         if(btn.innerText.trim().startsWith('▶ ')) {
