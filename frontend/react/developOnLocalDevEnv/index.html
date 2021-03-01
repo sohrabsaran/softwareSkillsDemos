@@ -28,16 +28,16 @@ END Please preserve this notice
       assert(id!=null)
       const btn = htmlToElement(/*html*/`
 <button class="btn btn-primary" data-toggle="collapse" data-target="#${id}" style="margin-bottom:5px"
->+ ${collapsibleDiv.dataset.title}</button>
+>${htmlEncode('> '+collapsibleDiv.dataset.title)}</button>
       `)
       const parent = collapsibleDiv.parentElement
       parent.insertBefore(btn, collapsibleDiv)
       collapsibleDiv.classList.add('collapse')
       btn.addEventListener('click',()=>{
         if(btn.innerText.trim().startsWith('+ ')) {
-          btn.innerText='- ' + withoutFirstChar(btn.innerText).trim()
+          btn.innerText='˅ ' + withoutFirstChar(btn.innerText).trim()
         } else {
-          btn.innerText='+ ' + withoutFirstChar(btn.innerText).trim()
+          btn.innerText='> ' + withoutFirstChar(btn.innerText).trim()
         }
       })
     }
