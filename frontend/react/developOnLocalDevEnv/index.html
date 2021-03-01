@@ -11,11 +11,12 @@ END Please preserve this notice
 <head>
   <script type="module">
   import {randLightColor} from "/softwareSkillsDemos/frontend/common.js"
+    /*
     for(const divNm of ['div1','div2','withoutTypescriptDiv','withTypescriptDiv']){
       let style = el(divNm).style
       style.backgroundColor = randLightColor()
       style.paddingLeft = '5px'
-    }
+    }*/
     
     const collapsibleDivs = document.querySelectorAll('[data-title]')
     //alert('test.length='+test.length)
@@ -27,8 +28,8 @@ END Please preserve this notice
       const id = collapsibleDiv.id
       assert(id!=null)
       const outerDiv = htmlToElement(/*html*/`
-<div style="border:1px solid black">
-<button id="${id}btn" class="btn btn-primary" data-toggle="collapse" data-target="#${id}" style="margin-bottom:5px"
+<div style="border:1px solid black; padding-left:5px"><button 
+id="${id}btn" class="btn btn-primary" data-toggle="collapse" data-target="#${id}" style="margin-bottom:5px"
 >${htmlEncode('▶ '+collapsibleDiv.dataset.title)}</button>
 </div>
       `)
