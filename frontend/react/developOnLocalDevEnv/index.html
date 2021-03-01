@@ -18,8 +18,23 @@ END Please preserve this notice
       style.paddingLeft = '5px'
     }
     
-    var test = document.querySelectorAll('[data-title]')
-    alert('test.length='+test.length)
+    const collapsibleDivs = document.querySelectorAll('[data-title]')
+    //alert('test.length='+test.length)
+    for(const collapsibleDiv of collapsibleDivs) {
+      initCollapsibleDiv(collapsibleDiv)
+    }
+
+    function initCollapsibleDiv(collapsibleDiv) {
+      const id = collapsibleDiv.id
+      assert(id!=null)
+      const btn = htmlToElement(/*html*/`
+<button class="btn btn-primary" data-toggle="collapse" data-target="#${id}"
+>${collapsibleDiv.dataset.target}</button>
+      `)
+      const parent = collapsibleDiv.parentElement
+      parent.insertBefore(,collapsibleDiv)
+      collapsibleDiv.classList.add('collapse')
+    }
 </script>
   <style>
     i {color:green}
