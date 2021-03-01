@@ -34,7 +34,7 @@ END Please preserve this notice
       parent.insertBefore(btn, collapsibleDiv)
       collapsibleDiv.classList.add('collapse')
       btn.addEventListener('click',()=>{
-        if(btn.innerText.trim().startsWith('+ ')) {
+        if(btn.innerText.trim().startsWith('> ')) {
           btn.innerText='˅ ' + withoutFirstChar(btn.innerText).trim()
         } else {
           btn.innerText='> ' + withoutFirstChar(btn.innerText).trim()
