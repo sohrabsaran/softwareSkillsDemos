@@ -17,6 +17,9 @@ END Please preserve this notice
       style.backgroundColor=randLightColor()
       style.paddingLeft = '5px'
     }
+    
+    var test = document.querySelectorAll(':not([data-title=""])')
+    alert('test.length='+test.length)
 </script>
   <style>
     i {color:green}
@@ -26,7 +29,7 @@ END Please preserve this notice
 <body>
 
   <pre>
-<div id="withoutTypescriptDiv">
+<div id="withoutTypescriptDiv" data-title="Without Typescript">
 <button class="btn btn-primary" data-toggle="collapse" data-target="#withoutTypescriptCollapseDiv"
 >Without Typescript</button>
 <div id="withoutTypescriptCollapseDiv" class="collapse">
