@@ -1,4 +1,3 @@
-  
 <!-- 
 START Please preserve this notice
 Copyright sohrabsaran@gmail.com, 2018-21. MIT License.
@@ -11,30 +10,9 @@ END Please preserve this notice
 <html>
 <head>
   <script type="module">
-  import {randLightColor} from "/softwareSkillsDemos/frontend/common.js"
-    for(const divNm of ['div1','div2','withoutTypescriptDiv','withTypescriptDiv']){
-      let style = el(divNm).style
-      style.backgroundColor=randLightColor()
-      style.paddingLeft = '5px'
-    }
+  import from "/softwareSkillsDemos/frontend/common.js"
     
-    const collapsibleDivs = document.querySelectorAll('[data-title]')
-    //alert('test.length='+test.length)
-    for(const collapsibleDiv of collapsibleDivs) {
-      initCollapsibleDiv(collapsibleDiv)
-    }
-
-    function initCollapsibleDiv(collapsibleDiv) {
-      const id = collapsibleDiv.id
-      assert(id!=null)
-      const btn = htmlToElement(/*html*/`
-<button class="btn btn-primary" data-toggle="collapse" data-target="#${id}"
->${collapsibleDiv.dataset.title}</button>
-      `)
-      const parent = collapsibleDiv.parentElement
-      parent.insertBefore(btn, collapsibleDiv)
-      collapsibleDiv.classList.add('collapse')
-    }
+ 
 </script>
   <style>
     i {color:green}
@@ -113,7 +91,7 @@ Find out more about deployment here:
 Setup: see <a href="https://create-react-app.dev/docs/adding-typescript/">here</a>. I named my app react-typescript-app.
 
 The output of 'npx create-react-app react-typescript-app --template typescript' is identical to the output of the without-typescript 'npx create-react-app...' command.
-Deployment steps are also identical; the app is deployed <a href="The source code of the single page of this single-page React app is available <a href="https://sohrabsaran.github.io/softwareSkillsDemos/frontend/react/developOnLocalDevEnv/react-typescript-app/build">here</a>.
+Deployment steps are also identical; the app is deployed <a href="https://sohrabsaran.github.io/softwareSkillsDemos/frontend/react/developOnLocalDevEnv/react-typescript-app/build">here</a>.
 </div>
   </pre>
   </body>
