@@ -24,6 +24,8 @@ Features:
 - JSX validation is more advanced than HTML validation. VsCode does quite a lot of JSX validation in problems view.
 - Components are defined as js classes or 'constructor functions'. Thereafter they can be referenced in JSX using <b>custom tags</b>.
 - Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class via this.props.attrName 
+- Virtual DOM: As shown <a href="https://reactjs.org/docs/rendering-elements.html#updating-the-rendered-element">here</a> even if render() somehow needs to be called multiple times for the same component, 
+React only renders the changed tags by diffing against an in-memory structure called the Virtual DOM, thus improving performance
 
 Demos:
 
