@@ -13,6 +13,17 @@
   }
 }
 
+/**
+TODO: (this is CSS learning rather than React....)
+Describe the summary of this CSS class, especially:
+- min-height: 100vh: ensures full screen height for the element to which this
+              rule has been
+- display: flex
+- flex-direction
+- align-items
+- justify-content
+- vmin, vmax: http://thenewcode.com/1137/MinMaxing-Understanding-vMin-and-vMax-in-CSS
+*/
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
