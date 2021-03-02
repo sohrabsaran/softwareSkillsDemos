@@ -26,7 +26,8 @@ Features:
 - Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class via this.props.attrName 
 - Virtual DOM: As shown <a href="https://reactjs.org/docs/rendering-elements.html#updating-the-rendered-element">here</a> even if render() somehow needs to be called multiple times for the same component, React only renders the changed tags by diffing against an in-memory structure called the Virtual DOM, thus improving performance.
 - State: in addition to the unchangeable props, React components can also have data called 'state' that is changeable by the component.
-- UI State Events: In addition to allowing changeable data state, the React component class can override certain base class methods in order to listen to events such as 'component mounted (rendered)', 'component will unmount' etc.
+- Automatically update UI on state change: you are supposed to use this.setState() to change the state. Based on the changed state, React will automatically re-render the component.
+- UI State Events: In addition to allowing changeable data state, the React component class can override certain base class methods in order to listen to events such as 'component mounted (rendered) for the first time', 'component will unmount' etc.
 
 Demos:
 
