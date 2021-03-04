@@ -26,15 +26,22 @@ A component corresponds to an HTML element and its content. The most common comp
 - JSX/Typescript integrates with SVG and CSS to allow importing them into the .tsx files. So the CSS and SVG part of JSX can be validated.
 - JSX validation is more advanced than HTML validation. VsCode does quite a lot of JSX validation in problems view.
 - Components are defined as js classes or 'constructor functions'. Thereafter they can be referenced in JSX using <b>custom tags</b>.
-- Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class via <code>this.props.attrName</code>. 
+- Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class as the attributes of the readonly object <code>this.props</code>. 
 - Virtual DOM: As shown <a href="https://reactjs.org/docs/rendering-elements.html#updating-the-rendered-element">here</a> even if render() somehow needs to be called multiple times for the same component, React only renders the changed tags by diffing against an in-memory structure called the Virtual DOM, thus improving performance.
 - Automatically update UI on state change: In addition to the unchangeable props, React components should use a field <code>this.state</code> that is changeable by the component via the async method <code>this.setState()</code>, to store data used for rendering output. On detecting changes to <code>this.state</code>, React will automatically re-render the component.
 - UI State Events: In addition to allowing changeable data state, the React component class can override certain base class methods in order to listen to events such as 'component mounted (rendered) for the first time', 'component will unmount' etc.
 </div>
 <div data-title="Points To Remember">
-- Use <code>this.state = ....</code> in the constructor, and <code>this.setState({name1:val1,...})</code> elsewhere.
-- To conditionally not render anything, return null from the render() function.
+- To change the data on which the rendering output directly depends, use <code>this.state = ....</code> in the constructor, and <code>this.setState({name1:val1,...})</code> elsewhere.
+- To (usually, conditionally) not render anything, return null from the render() function.
 - Arrow functions do not change the value of 'this', so they're handy when you want to preserve the 'this' value from an outer method definition.
+- If a constructor is defined for a <code>React.component</code> subclass, it must manually allow the passing in of <code>props</code> by being declared as follows:
+<code>
+constructor(props) {
+  super(props)
+  //custom code goes here
+}
+</code>
 </div>
 <div data-title="Demos">
 - <a href="developUsingJustGithub">React using only Github editor (no need for local dev env or build steps)</a>
