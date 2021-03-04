@@ -17,17 +17,18 @@ END Please preserve this notice
 <body>
 
   <pre>
-React is a javascript library from Facebook, used to create high-performance user interfaces called 'Single Page Apps'. It lets you compose complex UIs from separate pieces of code called "components". The most common components are subclasses of <code>React.Component</code> that the developer needs to create. These subclases must implement a method render() that returns a 'React element' object
+React is a javascript library from Facebook, used to create high-performance user interfaces called 'Single Page Apps'. It lets you compose complex UIs from separate pieces of code called "components". 
+
+A component corresponds to an HTML element and its content. The most common components are subclasses of <code>React.Component</code> that the developer needs to create. These subclases must implement a method <code>render()</code> that must return an immutable <code>React element</code> object. A way is provided to automatically call <code>render()</code> when data on which the rendering output depends on, is changed. React efficiently updates the screen, based on the differences in output between the current and previous call to <code>render()</code>. 
 
 <div data-title="Features">
 - Integrates with Typescript for compile-time checking, Webpack for website performance.
 - JSX/Typescript integrates with SVG and CSS to allow importing them into the .tsx files. So the CSS and SVG part of JSX can be validated.
 - JSX validation is more advanced than HTML validation. VsCode does quite a lot of JSX validation in problems view.
 - Components are defined as js classes or 'constructor functions'. Thereafter they can be referenced in JSX using <b>custom tags</b>.
-- Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class via this.props.attrName 
+- Attributes for JSX custom tags are very similar to HTML attributes, and the values thus set can be accessed in the corresponding component class via <code>this.props.attrName</code>. 
 - Virtual DOM: As shown <a href="https://reactjs.org/docs/rendering-elements.html#updating-the-rendered-element">here</a> even if render() somehow needs to be called multiple times for the same component, React only renders the changed tags by diffing against an in-memory structure called the Virtual DOM, thus improving performance.
-- State: in addition to the unchangeable props, React components can also have data called 'state' that is changeable by the component.
-- Automatically update UI on state change: you are supposed to use this.setState() to change the state. Based on the changed state, React will automatically re-render the component.
+- Automatically update UI on state change: In addition to the unchangeable props, React components should use a field <code>this.state</code> that is changeable by the component via the async method <code>this.setState()</code>, to store data used for rendering output. On detecting changes to <code>this.state</code>, React will automatically re-render the component.
 - UI State Events: In addition to allowing changeable data state, the React component class can override certain base class methods in order to listen to events such as 'component mounted (rendered) for the first time', 'component will unmount' etc.
 </div>
 <div data-title="Points To Remember">
