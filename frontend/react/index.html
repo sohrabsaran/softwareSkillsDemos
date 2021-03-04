@@ -46,12 +46,11 @@ A component corresponds to an HTML element and its content. The most common comp
 - To (usually, conditionally) not render anything, return null from the <code>render()</code> function.
 - Arrow functions do not change the value of 'this', so they're handy when you want to preserve the 'this' value from an outer method definition.
 - If a constructor is defined for a <code>React.component</code> subclass, it must manually allow the passing in of <code>props</code> by being declared as follows:
-<code>
-constructor(props) {
+<code>constructor(props) {
   super(props)
   //custom code goes here
-}
-</code>
+}</code>
+- We should use <code>props</code> to pass readonly (and initial?) information from outer UI components to inner UI components. 
 </div>
 <div data-title="Demos">
 - <a href="developUsingJustGithub">React using only Github editor (no need for local dev env or build steps)</a>
