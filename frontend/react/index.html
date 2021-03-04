@@ -23,20 +23,16 @@ A component corresponds to an HTML element and its content. The most common comp
 
 <div data-title="Features">
 - Integrates with Typescript for compile-time checking, Webpack for website performance.
-- JSX is an extension to js that allows us to easily write HTML in js files. The Babel compiler pre-processes the the .js files to convert JSX element declarations e.g.:
-<code>
-&lt;div attr1="val1"&gt;
+- JSX is an extension to js that allows us to easily write HTML fragments in js files, and mix JS expressions in braces <code>{}</code> into that HTML. The Babel compiler pre-processes the the .js files to convert JSX element declarations e.g.:
+<code>&lt;div attr1="val1"&gt;
   &lt;child1/&gt;
   &lt;child2/&gt;
- &lt;/div&gt;
-</code> 
+ &lt;/div&gt;</code> 
 ...into plain javascript function calls, as follows:
-<code>
-  React.createElement('div',{attr1: 'val1'}, 
+<code>React.createElement('div',{attr1: 'val1'}, 
     React.createElement('child1'),
     React.createElement('child2')
-  )
-</code>.
+  )</code>
 - JSX/Typescript integrates with SVG and CSS to allow importing them into the .tsx files. So the CSS and SVG part of JSX can be validated.
 - JSX validation is more advanced than HTML validation. VsCode does quite a lot of JSX validation in problems view.
 - Components are defined as js classes or 'constructor functions'. Thereafter they can be referenced in JSX using <b>custom tags</b>.
