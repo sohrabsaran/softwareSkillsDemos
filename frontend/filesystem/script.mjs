@@ -28,7 +28,7 @@ import {
 let fileStructure
 
 (async () => {
-  const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs'); 
+  const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs','module'); 
   const fileOpen = x.fileOpen;
   const directoryOpen = x.directoryOpen;
   const fileSave = x.fileSave;
