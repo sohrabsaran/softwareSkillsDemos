@@ -68,13 +68,6 @@ let fileStructure
       }
     }
   });
-
-  //added this function
-  Array.prototype.asyncForEach = async function (fn) {
-    for (let i = 0; i < this.length; i++) {
-      await fn(this[i], i);
-    }
-  };
   
   async function onBlobRead(blob) {
       // The Native File System API currently reports the `webkitRelativePath`
