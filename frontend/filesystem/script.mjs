@@ -15,25 +15,16 @@
  * limitations under the License.
  */
 
-/*
-Below has started giving CORS issues (that were not there before?)*/
 import {
   fileOpen,
   directoryOpen,
-  fileSave,
-  imageToBlob,
+  fileSave
 } from 'https://unpkg.com/browser-nativefs'
-/**/
 
 let fileStructure
 
 (async () => {
-  /*const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs','module'); 
-  const fileOpen = x.fileOpen;
-  const directoryOpen = x.directoryOpen;
-  const fileSave = x.fileSave;
-  const imageToBlob = x.imageToBlob;
-  */
+  
   const openButton = document.querySelector('#open');
   const openMultipleButton = document.querySelector('#open-multiple');
   const openDirectoryButton = document.querySelector('#open-directory');
@@ -151,3 +142,23 @@ ${//in below LOC, print out file content
   openDirectoryButton.disabled = false;
   saveButton.disabled = false;
 })();
+
+/**
+ * Converts an image to a Blob.
+ * @param {HTMLImageElement} img - Image element.
+ * @return {Blob} Resulting Blob.
+ from: https://github.com/GoogleChromeLabs/browser-fs-access/blob/main/demo/image-to-blob.mjs
+ */
+const imageToBlob = async (img) => {
+  return new Promise((resolve) => {
+    const canvas = document.createElement('canvas');
+    canvas.width = img.naturalWidth;
+    canvas.height = img.naturalHeight;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(img, 0, 0);
+    canvas.toBlob((blob) => {
+      resolve(blob);
+    });
+  });
+};
+
