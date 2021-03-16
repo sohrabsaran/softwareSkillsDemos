@@ -28,6 +28,7 @@ Source Code
 		let resultDiv = el('resultDiv')
 		let s = elVal('ta')
 		s = dos2Unix(s)
+		s = withCommentsRemoved(s)
 		let names = {}
 		let name = ''
 		let lastIdx = s.length - 1
