@@ -25,6 +25,11 @@ import {
 let fileStructure
 
 (async () => {
+  const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs'); 
+  const fileOpen = x.fileOpen;
+  const directoryOpen = x.directoryOpen;
+  const fileSave = x.fileSave;
+  const imageToBlob = x.imageToBlob;
   const openButton = document.querySelector('#open');
   const openMultipleButton = document.querySelector('#open-multiple');
   const openDirectoryButton = document.querySelector('#open-directory');
