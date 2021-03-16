@@ -16,24 +16,24 @@
  */
 
 /*
-Below has started giving CORS issues (that were not there before?)
+Below has started giving CORS issues (that were not there before?)*/
 import {
   fileOpen,
   directoryOpen,
   fileSave,
   imageToBlob,
 } from 'https://unpkg.com/browser-nativefs'
-*/
+/**/
 
 let fileStructure
 
 (async () => {
-  const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs','module'); 
+  /*const x = await loadScriptFromTextAtUrl('https://unpkg.com/browser-nativefs','module'); 
   const fileOpen = x.fileOpen;
   const directoryOpen = x.directoryOpen;
   const fileSave = x.fileSave;
   const imageToBlob = x.imageToBlob;
-  
+  */
   const openButton = document.querySelector('#open');
   const openMultipleButton = document.querySelector('#open-multiple');
   const openDirectoryButton = document.querySelector('#open-directory');
