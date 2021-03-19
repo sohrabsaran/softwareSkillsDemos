@@ -57,7 +57,7 @@ let fileStructure
   });
   
   function extnsOfFilesToInclude() {
-    return extnsOfFilesToIncludeTbx.value.split(' ').map(extn=>rightOf(extn.trim(),'.*'))
+    return extnsOfFilesToIncludeTbx.value.split(' ').map(extn=>rightOf(extn.trim(),'*.'))
   }
 
   openMultipleButton.addEventListener('click', async () => {
