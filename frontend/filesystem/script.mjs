@@ -22,6 +22,7 @@ import {
 } from 'https://unpkg.com/browser-nativefs'
 
 let fileStructure
+let 
 
 (async () => {
   
@@ -29,6 +30,7 @@ let fileStructure
   const openMultipleButton = document.querySelector('#open-multiple');
   const openDirectoryButton = document.querySelector('#open-directory');
   const saveButton = document.querySelector('#save');
+  const extnsOfFilesToIncludeTbx = document.querySelector("#extnsOfFilesToIncludeTbx");
   const pre = document.querySelector('pre');
 
   const appendImage = (blob) => {
@@ -51,6 +53,10 @@ let fileStructure
       }
     }
   });
+  
+  function extnsOfFilesToInclude() {
+    return extnsOfFilesToIncludeTbx.value.split(' ').map(extn=>rightOf(extn.trim(),'.*'))
+  }
 
   openMultipleButton.addEventListener('click', async () => {
     try {
@@ -85,7 +91,8 @@ ${//in below LOC, print out file content
   openDirectoryButton.addEventListener('click', async () => {
     try {
       //using {recursive: true}
-      const blobs = await directoryOpen({ recursive: true });
+      const blobs = await directoryOpen({ recursive: true ,
+                                        extensions: extnsOfFilesToInclude()});
       //const blobs = await directoryOpen();
 
       fileStructure = ''
