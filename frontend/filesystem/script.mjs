@@ -14,6 +14,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+/**
+ Copyright 2020-21 Sohrab Saran, MIT License
+*/
 
 import {
   fileOpen,
@@ -90,10 +93,12 @@ ${//in below LOC, print out file content
 
   openDirectoryButton.addEventListener('click', async () => {
     try {
-      //using {recursive: true}
-      const blobs = await directoryOpen({ recursive: true ,
-                                        extensions: extnsOfFilesToInclude()});
-      //const blobs = await directoryOpen();
+      
+      let opts = {recursive: true}
+      if(!['','*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
+        opts.extensions = extnsOfFilesToInclude()
+      }
+      const blobs = await directoryOpen(opts);
 
       fileStructure = ''
 
