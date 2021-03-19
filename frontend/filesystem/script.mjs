@@ -24,8 +24,7 @@ import {
   fileSave
 } from 'https://unpkg.com/browser-nativefs'
 
-let fileStructure
-let 
+let fileStructure 
 
 (async () => {
   
