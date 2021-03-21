@@ -104,7 +104,7 @@ ${//in below LOC, print out file content
             console.log('Clicked open directory button')
             blobCtr = 0
             let opts = { recursive: true }
-            let blobOpts = opts
+            blobOpts = opts
             if (!['', '*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
                 opts.extensions = extnsOfFilesToInclude()
             }
