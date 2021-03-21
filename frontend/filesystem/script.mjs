@@ -77,17 +77,18 @@ let fileStructure
         }
     });
 
-    let blobCtr, numOfBlobs, blobOpts
+    let blobCtr, numOfBlobs, blobOpts, filteredBlobCtr
     
     async function onBlobRead(blob) {
         blobCtr++
-        console.log('blobCtr=' + blobCtr + ' of ' + numOfBlobs)
+        console.log('filteredBlobCtr = ' + filteredBlobCtr + ', blobCtr = ' + blobCtr + ', numbOfBlobs = ' + numOfBlobs)
         if(blobOpts.extensions != null) {
           if(blob.name.includes('.')) {
            const extn = rightOf(blob.name,'.')
            if(!blobOpts.extensions.includes(extn)){return}
           }
         }
+        filteredBlobCtr++
         // The Native File System API currently reports the `webkitRelativePath`
         // as empty string `''`.
         fileStructure += `/* Content of File ${blob.webkitRelativePath}${blob.webkitRelativePath.endsWith(blob.name) ? '' :
@@ -102,7 +103,7 @@ ${//in below LOC, print out file content
     openDirectoryButton.addEventListener('click', async () => {
         try {
             console.log('Clicked open directory button')
-            blobCtr = 0
+            blobCtr = filteredBlobCtr = 0
             let opts = { recursive: true }
             blobOpts = opts
             if (!['', '*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
@@ -128,7 +129,7 @@ ${//in below LOC, print out file content
                 //in below LOC, changed forEach to asyncForEach
             }).asyncForEach(onBlobRead);
             //pre.textContent = fileStructure;
-            console.log('fileStructure.length='+fileStructure.length)
+            console.log('fileStructure.length=' + fileStructure.length)
             setElVal('ta', fileStructure)
             el('ta').dispatchEvent(new Event('input'))
 
