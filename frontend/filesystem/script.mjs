@@ -19,132 +19,137 @@
 */
 
 import {
-  fileOpen,
-  directoryOpen,
-  fileSave
+    fileOpen,
+    directoryOpen,
+    fileSave
 } from 'https://unpkg.com/browser-nativefs'
 
-let fileStructure 
+let fileStructure
 
 (async () => {
-  
-  const openButton = document.querySelector('#open');
-  const openMultipleButton = document.querySelector('#open-multiple');
-  const openDirectoryButton = document.querySelector('#open-directory');
-  const saveButton = document.querySelector('#save');
-  const extnsOfFilesToIncludeTbx = document.querySelector("#extnsOfFilesToIncludeTbx");
-  const pre = document.querySelector('pre');
 
-  const appendImage = (blob) => {
-    const img = document.createElement('img');
-    img.src = URL.createObjectURL(blob);
-    document.body.append(img);
-    setTimeout(() => URL.revokeObjectURL(img.src), 1000);
-  };
+    const openButton = document.querySelector('#open');
+    const openMultipleButton = document.querySelector('#open-multiple');
+    const openDirectoryButton = document.querySelector('#open-directory');
+    const saveButton = document.querySelector('#save');
+    const extnsOfFilesToIncludeTbx = document.querySelector("#extnsOfFilesToIncludeTbx");
+    const pre = document.querySelector('pre');
 
-  openButton.addEventListener('click', async () => {
-    try {
-      const blob = await fileOpen({
-        mimeTypes: ['image/*'],
-        extensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-      });
-      appendImage(blob);
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error(err);
-      }
-    }
-  });
-  
-  function extnsOfFilesToInclude() {
-    return extnsOfFilesToIncludeTbx.value.split(' ').map(extn=>rightOf(extn.trim(),'*.'))
-  }
+    const appendImage = (blob) => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(blob);
+        document.body.append(img);
+        setTimeout(() => URL.revokeObjectURL(img.src), 1000);
+    };
 
-  openMultipleButton.addEventListener('click', async () => {
-    try {
-      const blobs = await fileOpen({
-        mimeTypes: ['image/*'],
-        extensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
-        multiple: true,
-      });
-      for (const blob of blobs) {
-        appendImage(blob);
-      }
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error(err);
-      }
-    }
-  });
-  
-  async function onBlobRead(blob) {
-      // The Native File System API currently reports the `webkitRelativePath`
-      // as empty string `''`.
-      fileStructure += `/* Content of File ${blob.webkitRelativePath}${
-                      blob.webkitRelativePath.endsWith(blob.name) ? '' :
-                      ('(error/limitation?: blob.webkitRelativePath(\''+blob.webkitRelativePath+
-                        '\') does not end with blob.name(\''+blob.name+'\'))')
-          } */
-${//in below LOC, print out file content
-      await blob.text()}
-`
-  }
-
-  openDirectoryButton.addEventListener('click', async () => {
-    try {
-      
-      let opts = {recursive: true}
-      if(!['','*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
-        opts.extensions = extnsOfFilesToInclude()
-      }
-      const blobs = await directoryOpen(opts);
-
-      fileStructure = ''
-
-      //added 'await' to the below LOC:
-      await blobs.sort((a, b) => {
-        a = a.webkitRelativePath + a.name;
-        b = b.webkitRelativePath + b.name;
-        if (a < b) {
-          return -1;
-        } else if (a > b) {
-          return 1;
+    openButton.addEventListener('click', async () => {
+        try {
+            const blob = await fileOpen({
+                mimeTypes: ['image/*'],
+                extensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+            });
+            appendImage(blob);
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error(err);
+            }
         }
-        return 0;
+    });
 
-        //in below LOC, changed forEach to asyncForEach
-      }).asyncForEach(onBlobRead);
-      //pre.textContent = fileStructure;
-      setElVal('ta',fileStructure)
-      el('ta').dispatchEvent(new Event('input'))
-
-      blobs.filter((blob) => {
-        return blob.type.startsWith('image/');
-      }).forEach((blob) => {
-        appendImage(blob);
-      });
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error(err);
-      }
+    function extnsOfFilesToInclude() {
+        return extnsOfFilesToIncludeTbx.value.split(' ').map(extn => rightOf(extn.trim(), '*.'))
     }
-  });
 
-  saveButton.addEventListener('click', async () => {
-    const blob = await imageToBlob(document.querySelector('img'));
-    try {
-      await fileSave(blob, { fileName: 'Untitled.png' });
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error(err);
-      }
+    openMultipleButton.addEventListener('click', async () => {
+        try {
+            const blobs = await fileOpen({
+                mimeTypes: ['image/*'],
+                extensions: ['jpg', 'jpeg', 'png', 'gif', 'webp'],
+                multiple: true,
+            });
+            for (const blob of blobs) {
+                appendImage(blob);
+            }
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error(err);
+            }
+        }
+    });
+
+    let blobCtr 
+    
+    async function onBlobRead(blob) {
+        blobCtr++
+        console.log('blobCtr='+blobCtr)
+     
+        // The Native File System API currently reports the `webkitRelativePath`
+        // as empty string `''`.
+        fileStructure += `/* Content of File ${blob.webkitRelativePath}${blob.webkitRelativePath.endsWith(blob.name) ? '' :
+            ('(error/limitation?: blob.webkitRelativePath(\'' + blob.webkitRelativePath +
+                '\') does not end with blob.name(\'' + blob.name + '\'))')
+            } */
+${//in below LOC, print out file content
+            await blob.text()}
+`
     }
-  });
 
-  openButton.disabled = false;
-  openMultipleButton.disabled = false;
-  openDirectoryButton.disabled = false;
-  saveButton.disabled = false;
+    openDirectoryButton.addEventListener('click', async () => {
+        try {
+            console.log('Clicked open directory button')
+            blobCtr = 0
+            let opts = { recursive: true }
+            if (!['', '*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
+                opts.extensions = extnsOfFilesToInclude()
+            }
+            const blobs = await directoryOpen(opts);
+
+            fileStructure = ''
+
+            //added 'await' to the below LOC:
+            await blobs.sort((a, b) => {
+                a = a.webkitRelativePath + a.name;
+                b = b.webkitRelativePath + b.name;
+                if (a < b) {
+                    return -1;
+                } else if (a > b) {
+                    return 1;
+                }
+                return 0;
+
+                //in below LOC, changed forEach to asyncForEach
+            }).asyncForEach(onBlobRead);
+            //pre.textContent = fileStructure;
+            setElVal('ta', fileStructure)
+            el('ta').dispatchEvent(new Event('input'))
+
+            blobs.filter((blob) => {
+                return blob.type.startsWith('image/');
+            }).forEach((blob) => {
+                appendImage(blob);
+            });
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error(err);
+            }
+        }
+    });
+
+    saveButton.addEventListener('click', async () => {
+        const blob = await imageToBlob(document.querySelector('img'));
+        try {
+            await fileSave(blob, { fileName: 'Untitled.png' });
+        } catch (err) {
+            if (err.name !== 'AbortError') {
+                console.error(err);
+            }
+        }
+    });
+
+    openButton.disabled = false;
+    openMultipleButton.disabled = false;
+    openDirectoryButton.disabled = false;
+    saveButton.disabled = false;
 })();
 
 /**
@@ -154,15 +159,14 @@ ${//in below LOC, print out file content
  from: https://github.com/GoogleChromeLabs/browser-fs-access/blob/main/demo/image-to-blob.mjs
  */
 const imageToBlob = async (img) => {
-  return new Promise((resolve) => {
-    const canvas = document.createElement('canvas');
-    canvas.width = img.naturalWidth;
-    canvas.height = img.naturalHeight;
-    const ctx = canvas.getContext('2d');
-    ctx.drawImage(img, 0, 0);
-    canvas.toBlob((blob) => {
-      resolve(blob);
+    return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        canvas.toBlob((blob) => {
+            resolve(blob);
+        });
     });
-  });
 };
-
