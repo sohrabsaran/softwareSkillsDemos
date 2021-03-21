@@ -39,6 +39,7 @@ let fileStructure
    let filePathsToExclude//datatype: array of strings
 
     const appendImage = (blob) => {
+      debugger
         const img = document.createElement('img');
         img.src = URL.createObjectURL(blob);
         document.body.append(img);
