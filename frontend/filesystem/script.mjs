@@ -117,7 +117,7 @@ ${//in below LOC, print out file content
     openDirectoryButton.addEventListener('click', async () => {
         try {
             console.log('Clicked open directory button')
-            filePathsToExclude = mysplit(filePathsToExcludeTbx.value,' ')
+            filePathsToExclude = mysplit(filePathsToExcludeTbx.value,',')
             alert('filePathsToExclude = '+str(filePathsToExclude))
             blobCtr = filteredBlobCtr = 0
             let opts = { recursive: true }
