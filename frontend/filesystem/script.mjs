@@ -121,6 +121,7 @@ ${//in below LOC, print out file content
                 //in below LOC, changed forEach to asyncForEach
             }).asyncForEach(onBlobRead);
             //pre.textContent = fileStructure;
+            console.log('fileStructure.length='+fileStructure.length)
             setElVal('ta', fileStructure)
             el('ta').dispatchEvent(new Event('input'))
 
