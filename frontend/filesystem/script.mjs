@@ -101,13 +101,15 @@ let fileStructure
         filteredBlobCtr++
         // The Native File System API currently reports the `webkitRelativePath`
         // as empty string `''`.
-        fileStructure += `/* Content of File ${blob.webkitRelativePath}${blob.webkitRelativePath.endsWith(blob.name) ? '' :
+        
+        const s = `/* Content of File ${blob.webkitRelativePath}${blob.webkitRelativePath.endsWith(blob.name) ? '' :
             ('(error/limitation?: blob.webkitRelativePath(\'' + blob.webkitRelativePath +
                 '\') does not end with blob.name(\'' + blob.name + '\'))')
             } */
 ${//in below LOC, print out file content
             await blob.text()}
 `
+        fileStructur += s
     }
 
     //EVENT HANDLER FOR 'ON DIRECTORY SELECTED' EVENT 
