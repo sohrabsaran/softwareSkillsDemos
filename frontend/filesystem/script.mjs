@@ -77,12 +77,17 @@ let fileStructure
         }
     });
 
-    let blobCtr, numOfBlobs
+    let blobCtr, numOfBlobs, blobOpts
     
     async function onBlobRead(blob) {
         blobCtr++
-        console.log('blobCtr='+blobCtr+' of '+numOfBlobs)
-     
+        console.log('blobCtr=' + blobCtr + ' of ' + numOfBlobs)
+        if(blobOpts.extensions != null) {
+          if(blob.name.includes('.')) {
+           const extn = rightOf(blob.name,'.')
+           if(!blobOpts.extensions.includes(extn)){return}
+          }
+        }
         // The Native File System API currently reports the `webkitRelativePath`
         // as empty string `''`.
         fileStructure += `/* Content of File ${blob.webkitRelativePath}${blob.webkitRelativePath.endsWith(blob.name) ? '' :
@@ -99,6 +104,7 @@ ${//in below LOC, print out file content
             console.log('Clicked open directory button')
             blobCtr = 0
             let opts = { recursive: true }
+            let blobOpts = opts
             if (!['', '*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
                 opts.extensions = extnsOfFilesToInclude()
             }
