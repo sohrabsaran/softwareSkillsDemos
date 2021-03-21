@@ -102,7 +102,7 @@ ${//in below LOC, print out file content
             if (!['', '*.*'].includes(extnsOfFilesToIncludeTbx.value.trim())) {
                 opts.extensions = extnsOfFilesToInclude()
             }
-            alert('opts.extensions = ', opts.extensions)
+            alert('opts.extensions = '+ str(opts.extensions))
             const blobs = await directoryOpen(opts);
             numOfBlobs = blobs.length
 
