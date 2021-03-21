@@ -77,11 +77,11 @@ let fileStructure
         }
     });
 
-    let blobCtr 
+    let blobCtr, numOfBlobs
     
     async function onBlobRead(blob) {
         blobCtr++
-        console.log('blobCtr='+blobCtr)
+        console.log('blobCtr='+blobCtr+' of '+numOfBlobs)
      
         // The Native File System API currently reports the `webkitRelativePath`
         // as empty string `''`.
@@ -103,6 +103,7 @@ ${//in below LOC, print out file content
                 opts.extensions = extnsOfFilesToInclude()
             }
             const blobs = await directoryOpen(opts);
+            numOfBlobs = blobs.length
 
             fileStructure = ''
 
