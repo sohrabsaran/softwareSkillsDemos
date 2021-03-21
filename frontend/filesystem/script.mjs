@@ -93,10 +93,9 @@ let fileStructure
         }
      
         if(blobOpts.extensions != null) {
-          if(blob.name.includes('.')) {
-           const extn = rightOf(blob.name,'.')
-           if(!blobOpts.extensions.includes(extn)){return}
-          }
+          if(!blob.name.includes('.')) {return}
+          const extn = rightOf(blob.name,'.')
+          if(!blobOpts.extensions.includes(extn)){return}
         }
         console.log('blob.webkitRelativePath='+blob.webkitRelativePath)
         filteredBlobCtr++
