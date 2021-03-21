@@ -33,6 +33,7 @@ let fileStructure
     const openDirectoryButton = document.querySelector('#open-directory');
     const saveButton = document.querySelector('#save');
     const extnsOfFilesToIncludeTbx = document.querySelector("#extnsOfFilesToIncludeTbx");
+    const filePathsToExclude = document.querySelector('#filePathsToExclude') 
     const pre = document.querySelector('pre');
 
     const appendImage = (blob) => {
