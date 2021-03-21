@@ -33,8 +33,10 @@ let fileStructure
     const openDirectoryButton = document.querySelector('#open-directory');
     const saveButton = document.querySelector('#save');
     const extnsOfFilesToIncludeTbx = document.querySelector("#extnsOfFilesToIncludeTbx");
-    const filePathsToExclude = document.querySelector('#filePathsToExclude') 
+    const filePathsToExcludeTbx = document.querySelector('#filePathsToExclude') 
     const pre = document.querySelector('pre');
+ 
+   let filePathsToExclude//datatype: array of strings
 
     const appendImage = (blob) => {
         const img = document.createElement('img');
@@ -83,6 +85,10 @@ let fileStructure
     async function onBlobRead(blob) {
         blobCtr++
         console.log('filteredBlobCtr = ' + filteredBlobCtr + ', blobCtr = ' + blobCtr + ', numbOfBlobs = ' + numOfBlobs)
+        //if(filePathsToExclude.some(pathPart=>))
+        alert('blob.name='+blob.name)
+        alert('blob.webkitRelativePath='+blob.webkitRelativePath) 
+     
         if(blobOpts.extensions != null) {
           if(blob.name.includes('.')) {
            const extn = rightOf(blob.name,'.')
@@ -101,9 +107,11 @@ ${//in below LOC, print out file content
 `
     }
 
+    //EVENT HANDLER FOR 'ON DIRECTORY SELECTED' EVENT 
     openDirectoryButton.addEventListener('click', async () => {
         try {
             console.log('Clicked open directory button')
+            filePathsToExclude = filePathsToExcludeTbx.value.split(' ')
             blobCtr = filteredBlobCtr = 0
             let opts = { recursive: true }
             blobOpts = opts
