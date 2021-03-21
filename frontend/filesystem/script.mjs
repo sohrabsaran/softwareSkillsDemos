@@ -98,6 +98,7 @@ let fileStructure
            if(!blobOpts.extensions.includes(extn)){return}
           }
         }
+        console.log('blob.webkitRelativePath='+blob.webkitRelativePath)
         filteredBlobCtr++
         // The Native File System API currently reports the `webkitRelativePath`
         // as empty string `''`.
@@ -109,7 +110,8 @@ let fileStructure
 ${//in below LOC, print out file content
             await blob.text()}
 `
-        fileStructur += s
+        //console.log(s)
+        fileStructure += s
     }
 
     //EVENT HANDLER FOR 'ON DIRECTORY SELECTED' EVENT 
