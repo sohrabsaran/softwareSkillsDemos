@@ -85,9 +85,12 @@ let fileStructure
     async function onBlobRead(blob) {
         blobCtr++
         console.log('filteredBlobCtr = ' + filteredBlobCtr + ', blobCtr = ' + blobCtr + ', numbOfBlobs = ' + numOfBlobs)
-        //if(filePathsToExclude.some(pathPart=>))
-        alert('blob.name='+blob.name)
-        alert('blob.webkitRelativePath='+blob.webkitRelativePath) 
+        
+        //alert('blob.name='+blob.name)
+        //alert('blob.webkitRelativePath='+blob.webkitRelativePath)
+        if(filePathsToExclude.some(pathPart=>blob.webkitRelativePath.includes(pathPart))) {
+           return
+        }
      
         if(blobOpts.extensions != null) {
           if(blob.name.includes('.')) {
