@@ -119,6 +119,7 @@ ${//in below LOC, print out file content
         try {
             console.log('Clicked open directory button')
             filePathsToExclude = filePathsToExcludeTbx.value.split(' ')
+            alert('filePathsToExclude = '+str(filePathsToExclude))
             blobCtr = filteredBlobCtr = 0
             let opts = { recursive: true }
             blobOpts = opts
