@@ -152,11 +152,14 @@ ${//in below LOC, print out file content
             setElVal('ta', fileStructure)
             el('ta').dispatchEvent(new Event('input'))
 
+           /*
+           //Display all images in this directory: 
             blobs.filter((blob) => {
                 return blob.type.startsWith('image/');
             }).forEach((blob) => {
                 appendImage(blob);
             });
+            */
         } catch (err) {
             if (err.name !== 'AbortError') {
                 console.error(err);
