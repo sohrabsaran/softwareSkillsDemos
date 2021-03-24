@@ -39,7 +39,7 @@ let fileStructure
    let filePathsToExclude//datatype: array of strings
 
     const appendImage = (blob) => {
-      debugger
+      alert('open debug console');debugger
         const img = document.createElement('img');
         img.src = URL.createObjectURL(blob);
         document.body.append(img);
@@ -47,6 +47,7 @@ let fileStructure
     };
 
     openButton.addEventListener('click', async () => {
+        alert('open debug console');debugger
         try {
             const blob = await fileOpen({
                 mimeTypes: ['image/*'],
@@ -65,6 +66,7 @@ let fileStructure
     }
 
     openMultipleButton.addEventListener('click', async () => {
+        alert('open debug console');debugger
         try {
             const blobs = await fileOpen({
                 mimeTypes: ['image/*'],
@@ -163,6 +165,7 @@ ${//in below LOC, print out file content
     });
 
     saveButton.addEventListener('click', async () => {
+        alert('open debug console');debugger
         const blob = await imageToBlob(document.querySelector('img'));
         try {
             await fileSave(blob, { fileName: 'Untitled.png' });
@@ -186,6 +189,7 @@ ${//in below LOC, print out file content
  from: https://github.com/GoogleChromeLabs/browser-fs-access/blob/main/demo/image-to-blob.mjs
  */
 const imageToBlob = async (img) => {
+    alert('open debug console');debugger
     return new Promise((resolve) => {
         const canvas = document.createElement('canvas');
         canvas.width = img.naturalWidth;
