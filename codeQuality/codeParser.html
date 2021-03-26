@@ -33,7 +33,8 @@ Output:
 	let outputDiv = el('outputDiv')
 	function onTaChange() {
 		try {
-			let syntax = acorn.parse(elVal('ta'))//esprima.parse(elVal('ta'))
+			let syntax = acorn.parse({locations: true, sourceType: 'module'},elVal('ta'))
+			//let syntax = esprima.parse(elVal('ta'))
 			outputDiv.innerText = JSON.stringify(syntax, null, 4)
 		} catch(e){
 		   outputDiv.innerText = e.stack
