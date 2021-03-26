@@ -4,8 +4,10 @@ START Please preserve this notice
 Copyright sohrabsaran@gmail.com, 2020, MIT License.
 License file location: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/LICENSE
 Location of this file in its repository: https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/codeQuality/codeParser.html
-deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/codeParser.html
+deployed at: https://sohrabsaran.github.io/softwareSkseillsDemos/codeQuality/codeParser.html
 END Please preserve this notice
+
+acorn seems to have overtaken esprima
 -->
 <html>
 
@@ -14,23 +16,24 @@ END Please preserve this notice
  * {width: 99%;}
 </style>
 <!-- open source js parser -->
-<script src="https://cdn.jsdelivr.net/npm/esprima/dist/esprima.min.js" crossorigin="anonymous"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/esprima/dist/esprima.min.js" crossorigin="anonymous"></script> -->
 </head>
 
 <body>
 <pre>
-Enter html+js or pure js code:
+Enter html+js or pure js code (change in text content triggers parsing):
 <textarea id="ta"  onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)">var answer = 42</textarea>
 
 Output:
 <div id="outputDiv"></div>
 </pre>
 <script type="module">
+	import * as acorn from 'https://unpkg.com/acorn/dist/acorn.mjs'
 	import '../frontend/common.js'
 	let outputDiv = el('outputDiv')
 	function onTaChange() {
 		try {
-			let syntax = esprima.parse(elVal('ta'))
+			let syntax = acorn.parse(elVal('ta'))//esprima.parse(elVal('ta'))
 			outputDiv.innerText = JSON.stringify(syntax, null, 4)
 		} catch(e){
 		   outputDiv.innerText = e.stack
