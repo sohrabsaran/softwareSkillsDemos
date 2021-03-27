@@ -32,19 +32,19 @@ Output:
 	import '../frontend/common.js'
 	let outputTa = el('outputTa')
 	function onTaChange() {
-		try {
-			let s = elVal('ta'), sArr = [s], files = new Map()
-			if(s.includes('/* Content of File ')) {
-				sArr = mysplit(s,'/* Content of File ')
-				let sArrLen = sArr.length
-				for(let i = 0; i < sArrLen; i++) {
-					const filePath = leftOf(sArr[i], '*/').trim()
-					assert(!files.has(filePath))
-					const fileContent = rightOf(sArr[i], '*/')
-					files.set(filePath, fileContent)
-				}
+		let s = elVal('ta'), sArr = [s], files = new Map()
+		if(s.includes('/* Content of File ')) {
+			sArr = mysplit(s,'/* Content of File ')
+			let sArrLen = sArr.length
+			for(let i = 0; i < sArrLen; i++) {
+				const filePath = leftOf(sArr[i], '*/').trim()
+				assert(!files.has(filePath))
+				const fileContent = rightOf(sArr[i], '*/')
+				files.set(filePath, fileContent)
 			}
-			let s2 = ''
+		}
+		let s2 = ''
+		try {
 			for(const s of sArr) {
 				let syntax = acorn.parse(elVal('ta'),{locations: true, sourceType: 'module'})
 				assert(syntax != null)
