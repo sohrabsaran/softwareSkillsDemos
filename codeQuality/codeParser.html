@@ -7,7 +7,7 @@ Location of this file in its repository: https://github.com/sohrabsaran/software
 deployed at: https://sohrabsaran.github.io/softwareSkillsDemos/codeQuality/codeParser.html
 END Please preserve this notice
 
-acorn seems to have overtaken esprima
+27-Mar-21: acorn js parser seems to have overtaken esprima js parser
 -->
 <html>
 
@@ -38,6 +38,7 @@ Output:
 			let sArrLen = sArr.length
 			for(let i = 0; i < sArrLen; i++) {
 				if(!sArr[i].includes('*/')) {
+					if(sArr[i]=='' && i == 0){continue}
 					alert('Unexpected error! Open dev console to inspect...')
 					console.log(sArr[i])
 					debugger
