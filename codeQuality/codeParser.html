@@ -37,6 +37,11 @@ Output:
 			sArr = mysplit(s,'/* Content of File ')
 			let sArrLen = sArr.length
 			for(let i = 0; i < sArrLen; i++) {
+				if(!sArr[i].includes('*/')) {
+					alert('Unexpected error! Open dev console to inspect...')
+					console.log(sArr[i])
+					debugger
+				}
 				const filePath = leftOf(sArr[i], '*/').trim()
 				assert(!files.has(filePath))
 				const fileContent = rightOf(sArr[i], '*/')
