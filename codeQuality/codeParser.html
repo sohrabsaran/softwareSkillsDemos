@@ -25,12 +25,12 @@ Enter html+js or pure js code (change in text content triggers parsing):
 <textarea id="ta"  onkeyup="onTaChange()" onpaste="setTimeout(onTaChange,100)">var answer = 42</textarea>
 
 Output:
-<div id="outputDiv"></div>
+<textarea readonly style="background:silver" id="outputTa"></textarea>
 </pre>
 <script type="module">
 	import * as acorn from 'https://unpkg.com/acorn/dist/acorn.mjs'
 	import '../frontend/common.js'
-	let outputDiv = el('outputDiv')
+	let outputTa = el('outputTa')
 	function onTaChange() {
 		try {
 			let s = elVal('ta'), sArr = [s], files = new Map()
@@ -50,9 +50,9 @@ Output:
 				//let syntax = esprima.parse(elVal('ta'))
 				s2 += JSON.stringify(syntax, null, 4) + '\n\n=========\n\n' 
 			}
-			outputDiv.innerText = s2
+			outputTa.value = s2
 		} catch(e){
-		   outputDiv.innerText = e.stack
+		   outputTa.value = e.stack
 		}
 	}
 	exportToWindow(onTaChange)
