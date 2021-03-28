@@ -47,30 +47,29 @@ Output:
 				assert(!files.has(filePath))
 				const fileContent = rightOf(sArr[i], '*/')
 				files.set(filePath, fileContent)
+				sArr[i] = fileContent
 			}
 		}
 		let s2 = ''
-		
-			for(const s of sArr) {
-				let syntax
-				try {
-					syntax = acorn.parse(s,{locations: true, sourceType: 'module'})
-				} catch(e){
-		  			console.log('Caught Exception!')
-		   			outputTa.value = e.stack+'\n====Tried to parse the following:===\n' + s
-		   			debugger
-					return
-				}
-				assert(syntax != null)
-				//let syntax = esprima.parse(s)
-				s2 += JSON.stringify(syntax, null, 4) + '\n\n=========\n\n' 
-				assert(s2!=null)
+		for(const s of sArr) {
+			let syntax
+			try {
+				syntax = acorn.parse(s, {locations: true, sourceType: 'module'})
+			} catch(e) {
+				console.log('Caught Exception!')
+				outputTa.value = e.stack + '\n====Tried to parse the following:===\n' + s
+				debugger
+				return
 			}
-			outputTa.value = s2
+			assert(syntax != null)
+			//let syntax = esprima.parse(s)
+			s2 += JSON.stringify(syntax, null, 4) + '\n\n=========\n\n' 
+			assert(s2!=null)
+		}
+		outputTa.value = s2
 	}
 	exportToWindow(onTaChange)
 </script>
 </body>
 
 </html>
-
