@@ -52,9 +52,9 @@ Output:
 		let s2 = ''
 		try {
 			for(const s of sArr) {
-				let syntax = acorn.parse(elVal('ta'),{locations: true, sourceType: 'module'})
+				let syntax = acorn.parse(s,{locations: true, sourceType: 'module'})
 				assert(syntax != null)
-				//let syntax = esprima.parse(elVal('ta'))
+				//let syntax = esprima.parse(s)
 				s2 += JSON.stringify(syntax, null, 4) + '\n\n=========\n\n' 
 				assert(s2!=null)
 			}
