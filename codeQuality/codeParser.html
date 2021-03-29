@@ -47,7 +47,7 @@ Output:
 				assert(!files.has(filePath))
 				const fileContent = rightOf(sArr[i], '*/')
 				files.set(filePath, fileContent)
-				sArr[i] = fileContent
+				sArr[i] = '/* Content of File ' + filePath + ' */' + fileContent
 			}
 		}
 		let s2 = ''
