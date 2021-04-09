@@ -19,8 +19,10 @@ Features:
 - can be used to search all kinds of documents (what's the trick that enables this?)
 
 Design:
+- Based on the Lucene library. Apache Lucene is an open source text indexing and search engine (so what exactly is ElasticSearch adding on top of Lucene?)
 - An ElasticSearch index is something that corresponds to a **Database** of an RDBMS
-- 
+- As per the Elastic Stack glossary: an 'index' is simply a collection of JSON documents.
+- A 'shard' in the Elastic Stack context, just means a Lucene instance containing some or all data for an index. Elasticsearch automatically creates and manages these Lucene instances. There are two types of shards: primary and replica. 
 - 'Distributed' means:
    - indices can be divided into shards and each shard can have zero or more replicas. 
    - A database shard, or simply a shard, is a horizontal partition of data in a database or search engine. 
