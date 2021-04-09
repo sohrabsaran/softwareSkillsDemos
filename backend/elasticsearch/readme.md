@@ -22,14 +22,21 @@ Design:
 - ElasticSearch reuses the Apache Lucene library. Apache Lucene is an open source text indexing and search engine (so what exactly is ElasticSearch adding on top of Lucene?).
 - An ElasticSearch cluster is a group of related ElasticSearch nodes (machines). Multiple machines are supported for distributed and scalable search.
 - Elasticsearch automatically distributes your data and query load across all of the available nodes.
-- An ElasticSearch index is something that corresponds to a **Database** of an RDBMS
-- As per the Elastic Stack glossary: an 'index' is simply a collection of JSON documents.
+- An ElasticSearch index is something that corresponds to a **Database** of an RDBMS (as per <a href="https://stackoverflow.com/questions/15025876/what-is-an-index-in-elasticsearch/15026433">this answer</a> index is like a database, and there is something called 'types' that corresponds to tables).
+- As per the Elastic Stack glossary: an 'index' is simply a collection of JSON documents. (But then isn't that more like a MongoDB collection i.e. RDBMS table????)
 - An ElasticSearch index is a logical grouping of one or more physical shards.
 - A 'shard' in the Elastic Stack context, just means a Lucene instance containing some or all data for an index. Elasticsearch automatically creates and manages these Lucene instances. 
 - There are two types of shards: primary and replica. Each primary shard can have zero or more replica shards.
 - A shard (database shard) is a horizontal partition of data in a database or search engine. 
 - A partition is a division of a logical database or its constituent elements into distinct independent parts. 
-   - Horizontal partitioning involves putting different rows into different tables. 
-      For example:
-      - customers with ZIP codes less than 50000 are stored in CustomersEast 
-      - customers with ZIP codes greater than or equal to 50000 are stored in CustomersWest.
+- Horizontal partitioning involves putting different rows into different tables (these are logically, PARTIAL TABLES). 
+  For example:
+   - customers with ZIP codes less than 50000 are stored in CustomersEast 
+   - customers with ZIP codes greater than or equal to 50000 are stored in CustomersWest.
+
+Use Cases:
+- Add data to ElasticSearch
+- Delete data added to ElasticSearch
+- Modify data added to ElasticSearch (can be simulated by Delete+Add use cases)
+- Query data stored in ElasticSearch
+- Index creation
