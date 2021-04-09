@@ -22,7 +22,17 @@ Design:
 - ElasticSearch reuses the Apache Lucene library. Apache Lucene is an open source text indexing and search engine (so what exactly is ElasticSearch adding on top of Lucene?).
 - An ElasticSearch cluster is a group of related ElasticSearch nodes (machines). Multiple machines are supported for distributed and scalable search.
 - Elasticsearch automatically distributes your data and query load across all of the available nodes.
-- An ElasticSearch index is something that corresponds to a **Database** of an RDBMS (as per <a href="https://stackoverflow.com/questions/15025876/what-is-an-index-in-elasticsearch/15026433">this answer</a> index is like a database, and there is something called 'types' that corresponds to tables).
+- An ElasticSearch index is something that corresponds to a Database? of an RDBMS (as per <a href="https://stackoverflow.com/questions/15025876/what-is-an-index-in-elasticsearch/15026433">this answer</a> index is like a database, and there is something called 'types' that corresponds to tables).
+- The same link has an answer below the accepted answer that leads to https://www.elastic.co/guide/en/elasticsearch/reference/6.0/removal-of-types.html
+- We can see that types were deprecated/removed from ElasticSearch v7 onwards. The reason is as follows:
+There could be multiple Types defined on an index and each type could have multiple fields. 
+This is like an RDMS can have multiple tables, and each table can have multiple fields.
+However, in an Elasticsearch index, fields that have the same name in different mapping types are backed by the same Lucene field internally. 
+This can lead to frustration when, for example, you want deleted to be a date field in one type and a boolean field in another type in the same index.
+On top of that, storing different entities that have few or no fields in common in the same index leads to sparse data and interferes with Lucene’s ability to compress documents efficiently.
+For these reasons, we have decided to remove the concept of mapping types from Elasticsearch.
+**So this means that ElasticSearch index concept corresponds to an RDBMS table now**.
+
 - As per the Elastic Stack glossary: an 'index' is simply a collection of JSON documents. (But then isn't that more like a MongoDB collection i.e. RDBMS table????)
 - An ElasticSearch index is a logical grouping of one or more physical shards.
 - A 'shard' in the Elastic Stack context, just means a Lucene instance containing some or all data for an index. Elasticsearch automatically creates and manages these Lucene instances. 
