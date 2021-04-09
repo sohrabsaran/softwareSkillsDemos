@@ -1,6 +1,6 @@
 Important Links:
-https://en.wikipedia.org/wiki/Elasticsearch
-https://www.elastic.co/guide/en/elastic-stack-glossary/current/terms.html
+- https://en.wikipedia.org/wiki/Elasticsearch
+- https://www.elastic.co/guide/en/elastic-stack-glossary/current/terms.html
 
 It is a search engine.
 
