@@ -17,7 +17,13 @@ Features:
 - can be used to search all kinds of documents (what's the trick that enables this?)
 
 Design:
+- An ElasticSearch index is something that corresponds to a **Database** of an RDBMS
+- 
 - 'Distributed' means:
    - indices can be divided into shards and each shard can have zero or more replicas. 
    - A database shard, or simply a shard, is a horizontal partition of data in a database or search engine. 
    - A partition is a division of a logical database or its constituent elements into distinct independent parts. 
+   - Horizontal partitioning involves putting different rows into different tables. 
+      For example:
+      - customers with ZIP codes less than 50000 are stored in CustomersEast 
+      - customers with ZIP codes greater than or equal to 50000 are stored in CustomersWest.
