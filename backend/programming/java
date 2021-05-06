@@ -1,0 +1,10 @@
+public static class FileUtils {
+
+  public static boolean fileExists(String path) {
+    return (new File(path)).exists();
+  }
+  
+  public static String fileToString(String path) {
+    return 
+  }
+}
