@@ -6,10 +6,10 @@ public static void createEmptyFile(String filePath) { saveStringToFile(filePath,
   
 public static void alwaysAssert(boolean { if(!b){throw new RuntimeException("ASSERT FAILED");}  
                                          
-public static boolean fileExists(String filePath) return (new File(filePath)).exists(); } 
+public static boolean fileExists(String filePath) {return (new File(filePath)).exists(); } 
                                 
-public static void saveStringToFile(String filePath, String data) 
-{ try{FileUtils.writeStringToFile(new File(filePath),data);}
+public static void saveStringToFile(String filePath, String data) {
+ try{FileUtils.writeStringToFile(new File(filePath),data);}
  catch(Exception e){throw new RuntimeException(e);
 }
  
