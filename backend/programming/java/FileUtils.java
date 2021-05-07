@@ -13,12 +13,17 @@ public static boolean fileExists(String filePath) {
   return true; 
 }
 
-public static boolean folderExists(String folderPath) { 
-  File file = new File(folderPath); 
-  if (!file.exists()) {return false;} 
-  alwaysAssert(file.isDirectory()); 
-  return true; 
-}                                         
+private static boolean folderExists(String folderPath) { 
+  File folder = new File(folderPath); 
+  if (!folder.exists()) {return false;} 
+  alwaysAssert(folder.isDirectory()); 
+  return true;
+}
+                                         
+private static void createFolderIfItDoesNotExist(String folderPath) { 
+  if(folderExists(folderPath)){return;} 
+  (new File(folderPath)).mkdir(); 
+}                          
                                 
 public static void saveStringToFile(String filePath, String data) {
  try{FileUtils.writeStringToFile(new File(filePath),data);}
