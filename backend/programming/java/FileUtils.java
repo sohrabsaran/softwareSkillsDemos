@@ -6,7 +6,19 @@ public static void createEmptyFile(String filePath) { saveStringToFile(filePath,
   
 public static void alwaysAssert(boolean { if(!b){throw new RuntimeException("ASSERT FAILED");}  
                                          
-public static boolean fileExists(String filePath) {return (new File(filePath)).exists(); } 
+public static boolean fileExists(String filePath) { 
+  File file = new File(filePath); 
+  if (!file.exists()) {return false;} 
+  alwaysAssert(file.isFile()); 
+  return true; 
+}
+
+public static boolean folderExists(String folderPath) { 
+  File file = new File(folderPath); 
+  if (!file.exists()) {return false;} 
+  alwaysAssert(file.isDirectory()); 
+  return true; 
+}                                         
                                 
 public static void saveStringToFile(String filePath, String data) {
  try{FileUtils.writeStringToFile(new File(filePath),data);}
