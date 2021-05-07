@@ -35,5 +35,10 @@ public static void appendLineToFile(String filePath, String data) {
   try{FileUtils.writeStringToFile(file,data, append: true);}
   catch(Exception e){throw new RuntimeException(e);} 
 }
+  
+  public static void deleteFileIfItExists(String filePath) { 
+    if(fileExists(filePath)){alwaysAssert((new File(filePath)).delete())};
+  }
+
 
 }
