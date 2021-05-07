@@ -1,6 +1,14 @@
 import org.apache.common.io.FileUtils;
 
 public static class Utils {
+  
+public static void forEachFile(String folderPath, Consumer<File> fileProcessorFn) { 
+  try { 
+    List<File> files = Files.list(Paths.get(folderPath)) .map(Path::toFile) .collect(Collectors.toList()); 
+    files.forEach(fileProcessorFn); 
+  } catch (I0Exception e) { throw new RuntimeException(e); } 
+}
+
 
 public static void createEmptyFile(String filePath) { saveStringToFile(filePath, data: " ") ; }
   
