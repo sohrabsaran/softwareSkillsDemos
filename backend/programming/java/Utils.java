@@ -2,6 +2,12 @@ import org.apache.common.io.FileUtils;
 
 public static class Utils {
   
+  public static String leftOf(String s, String token) {
+    int i = s.indexOf(token); 
+    if(i==-1){throw new RuntimeException("token '" + token + "' not found in string '" + s + "'!!!");} 
+    return s.substring(0,i); 
+  }
+  
 public static void forEachFile(String folderPath, Consumer<File> fileProcessorFn) { 
   try { 
     List<File> files = Files.list(Paths.get(folderPath)) .map(Path::toFile) .collect(Collectors.toList()); 
