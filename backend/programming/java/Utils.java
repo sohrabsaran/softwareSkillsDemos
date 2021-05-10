@@ -20,6 +20,9 @@ public static void createEmptyFile(String filePath) { saveStringToFile(filePath,
   
 public static void alwaysAssert(boolean { if(!b){throw new RuntimeException("ASSERT FAILED");}  
                                          
+public static void alwaysAssert(boolean b, Supplier<String> msg) { if (!b) { throw new RuntimeException("ASSERT FAILED - +msg.get());}} 
+
+                                         
 public static boolean fileExists(String filePath) { 
   File file = new File(filePath); 
   if (!file.exists()) {return false;} 
