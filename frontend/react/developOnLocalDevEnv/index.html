@@ -92,8 +92,12 @@ Setup: see <a href="https://create-react-app.dev/docs/adding-typescript/">here</
 
 The output of 'npx create-react-app react-typescript-app --template typescript' is identical to the output of the without-typescript 'npx create-react-app...' command.
 Deployment steps are also identical; the app is deployed <a href="https://sohrabsaran.github.io/softwareSkillsDemos/frontend/react/developOnLocalDevEnv/react-typescript-app/build">here</a>.
+
+Tips:
+- See <a href="https://stackoverflow.com/questions/41192491/how-can-i-provide-a-ssl-certificate-with-create-react-app">here</a> for localhost SSL certificate deployment for create-react-app.
+- To pass container component state changes down to the children, set 'children' field of the container component's props interface to have return type of function that takes in the changed data as input parameters and renders JSX as output. In the container component, in the rendering function, call the function children(...). When using the container component in JSX, only a function having the signature of the children props is now allowed to be rendered between the opening and closing tags of the container. However one can still render JSX directly in this function.   
+- To pass component state either upwards or downwards (but with more code than render props) have a callback function prop that can be listened to by whoever needs to listen. Ensure that the callback function is called by the component that needs to expose the state, only after that component's own rendering function has been completed. In React Functional Components, the callback function can be called inside a useEffects() hook, with the dependency array parameter containing only those state variables that are being exposed as changed, via the callback function.
 </div>
-See <a href="https://stackoverflow.com/questions/41192491/how-can-i-provide-a-ssl-certificate-with-create-react-app">here</a> for localhost SSL certificate deployment for create-react-app.
   </pre>
   </body>
 
