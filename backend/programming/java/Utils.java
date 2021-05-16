@@ -2,6 +2,20 @@ import org.apache.common.io.FileUtils;
 
 public static class Utils {
   
+  public static String urlToFilePath(URL url) {
+    try { return (new File(url.toURI())).getAbsolutePath(); }
+    catch(Exception e){throw new RuntimeException(e);}
+  }
+  
+  public static void deleteNonEmptyFolder(String folderPath) { 
+    File f = new File(folderPath); 
+    if(!f.exists()){return;} 
+    alwaysAssert(f.isDirectory()); 
+    try{ f FileUtils.deleteDirectory(f); } 
+    catch (I0Exception e) {throw new RuntimeException(e);} 
+  } 
+
+  
   public static String leftOf(String s, String token) {
     int i = s.indexOf(token); 
     if(i==-1){throw new RuntimeException("token '" + token + "' not found in string '" + s + "'!!!");} 
