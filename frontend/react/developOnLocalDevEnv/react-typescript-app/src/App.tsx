@@ -10,13 +10,21 @@ import logo from './logo.svg';
 // Expected:css import will allow for validation of css classes etc. mentioned
 // in JSX?
 import './App.css';
+import { Game } from './tictactoe/Game';
 
 /**
  * Represents the Application (App)'s root React UI Component.
  * A react component can be a class or a constructor function whose output is
- * a JSX Element.
+ * a JSX Element. In the case below, a constructor function is being used.
+ *
+ * Further this constructor function can take a single argument props. In that
+ * case, the App custom tag when used in JSX, can take attributes (in the same
+ * way as usual HTML tag attributes). The attribute key-value pairs are
+ * available to the constructor function via 'props'.
  */
 function App() {
+  //Note: if you don't have JSX support for some reason, then you would have to
+  //directly call React.createElement('div') etc...
   return (
     //Some JSX validation e.g. tag balancing, tag name validation etc. is done
     //with results showing up immediately in VS code problems view.
@@ -61,6 +69,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <Game />
     </div>
   );
 }
