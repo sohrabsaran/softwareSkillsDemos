@@ -1,3 +1,3 @@
 rootProject.name = 'intellij-project-with-gradle'
-include 'untitled'
+include 'utilsModule'
 
