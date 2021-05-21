@@ -5,6 +5,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,7 +14,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
-public static class Utils {
+public class Util {
 
   public static String urlToFilePath(URL url) {
     try {
@@ -81,7 +82,7 @@ public static class Utils {
     return true;
   }
 
-  private static boolean folderExists(String folderPath) {
+  public static boolean folderExists(String folderPath) {
     File folder = new File(folderPath);
     if (!folder.exists()) {
       return false;
@@ -90,7 +91,7 @@ public static class Utils {
     return true;
   }
 
-  private static void createFolderIfItDoesNotExist(String folderPath) {
+  public static void createFolderIfItDoesNotExist(String folderPath) {
     if (folderExists(folderPath)) {
       return;
     }
@@ -111,7 +112,7 @@ public static class Utils {
       data = "\n" + data;
     }
     try {
-      FileUtils.writeStringToFile(file, data, true);
+      FileUtils.writeStringToFile(file, data, Charset.defaultCharset(), true);
     } catch (Exception e) {
       throw new RuntimeException(e);
     }
