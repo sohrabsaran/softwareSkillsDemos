@@ -1,5 +1,5 @@
 All type of software projects are ultimately subsets of maintenance projects.
-Below is more motivational in nature than anything, since below stuff is more or less common sense.
+The solutions listed below are more motivational in nature than anything else, since the below stuff is more or less common sense.
 Anyway, here goes:
 
 # Challenges in maintenance projects and their solutions
