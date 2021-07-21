@@ -10,6 +10,8 @@ Anyway, here goes:
 
 ## Don't remember or know the project status
 - Tune the log messages to understand the current runtime behavior at a high level 
+- Allow log messages to be toggled on and off
+- Log the system status to a status file
 
 ## Don't remember the project goal
 - Investigate it and document it
