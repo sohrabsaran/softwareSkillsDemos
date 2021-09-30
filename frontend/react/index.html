@@ -50,7 +50,11 @@ A component corresponds to an HTML element and its content. The most common comp
   super(props)
   //custom code goes here
 }</code>
-- We should use <code>props</code> to pass readonly (and initial?) information from outer UI components to inner UI components. 
+- We use <code>props</code> to pass information from outer UI components to inner UI components.
+Inner UI components treat props as read-only. 
+Changing the props will NOT reset the component state.
+To reset the component state, we need to set a special prop called "key".
+When this prop is changed, then the component state is reset.
 </div>
 <div data-title="Demos">
 - <a href="developUsingJustGithub">React using only Github editor (no need for local dev env or build steps)</a>
