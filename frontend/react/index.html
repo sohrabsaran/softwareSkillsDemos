@@ -51,9 +51,9 @@ A component corresponds to an HTML element and its content. The most common comp
   //custom code goes here
 }</code>
 - We use <code>props</code> to pass information from outer UI components to inner UI components.
-Inner UI components treat props as read-only. 
-Changing the props will NOT reset the component state.
-To reset the component state, we need to set a special prop called "key".
+UI components treat their own props as read-only. 
+But props are not purely read-only. Changing the props of the child component from the parent component, will NOT reset the component state i.e. totally re-create the child component.
+To reset the child component state, we need to change the value of a special prop named "key".
 When this prop is changed, then the component state is reset.
 </div>
 <div data-title="Demos">
