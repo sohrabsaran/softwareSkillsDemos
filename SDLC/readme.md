@@ -21,12 +21,15 @@ Anyway, here goes:
 - Document
 
 ## Code getting too complex
-- break it into multiple files and smaller functions. 
+- break it into multiple files and smaller functions. Here I've recently found giant inheritance hierachies to be helpful where each class in the chain could have just one variable and its associated read and write logic. Don't know the perf impact about such giant hierarchies though. Not seen this approach used yet in industry.
 - Increase the documentation.
 - Work under version control, and delete code that is unwanted
+- Add unit testing
+- Use the best possible IDE and programming language
 
 ## Getting old and forgetful
-- put things in clear, globally accessible places
+- put things in clear, globally accessible places. 
+- Tradeoff between Intellectual Property protection, and being so secretive that you forget where you put your own code, what was the password etc! 
 - take proper backups.
 
 ## Task seems to be taking too long
