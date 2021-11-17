@@ -1,7 +1,14 @@
 <script>
 var jsonSourceUrl='https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/SDLC/visualization/architecture.json'
+
+// https://stackoverflow.com/questions/14351771/open-popup-window-using-javascript
+function openInPopupWindow(url,windowName) {
+	newwindow=window.open(url,windowName,'height=200,width=150');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
 </script>
-<a href="#" onclick="window.open(jsonSourceUrl)">Edit JSON</a>
+<a href="#" onclick="openInPopupWindow(jsonSourceUrl,'Edit JSON')">Edit JSON</a>
 <script type="module">
   import * as u from "https://jsutil37.github.io/jsutil/util.js";
   waitForSymbol(async function () {
