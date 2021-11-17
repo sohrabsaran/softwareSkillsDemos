@@ -1,38 +1,37 @@
-<script>
-var jsonSourceUrl='https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/SDLC/visualization/architecture.json'
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>auto-generated</title>
+  </head>
 
-// https://stackoverflow.com/questions/4068373/center-a-popup-window-on-screen
-const openInPopupWindow = ({url, title, w, h}) => {
-    // Fixes dual-screen position                             Most browsers      Firefox
-    const dualScreenLeft = window.screenLeft !==  undefined ? window.screenLeft : window.screenX;
-    const dualScreenTop = window.screenTop !==  undefined   ? window.screenTop  : window.screenY;
+  <body>
+    <script>
+      var jsonSourceUrl =
+        "https://github.com/sohrabsaran/softwareSkillsDemos/blob/master/SDLC/visualization/architecture.json";
+      var jsonDeploymentUrl =
+        "https://raw.githubusercontent.com/sohrabsaran/softwareSkillsDemos/master/SDLC/visualization/architecture.json";
+    </script>
+    <a
+      href="#"
+      onclick="openInPopupWindow(jsonSourceUrl,'Edit JSON',screen.width*.8,screen.height*.8)"
+      >Edit JSON</a
+    >
+    <script type="module">
+      import { openInPopupWindow } from "https://jsutil37.github.io/jsutil/util.js";
 
-    const width = window.innerWidth ? window.innerWidth : document.documentElement.clientWidth ? document.documentElement.clientWidth : screen.width;
-    const height = window.innerHeight ? window.innerHeight : document.documentElement.clientHeight ? document.documentElement.clientHeight : screen.height;
+      window.openInPopupWindow = openInPopupWindow;
 
-    const systemZoom = width / window.screen.availWidth;
-    const left = (width - w) / 2 / systemZoom + dualScreenLeft
-    const top = (height - h) / 2 / systemZoom + dualScreenTop
-    const newWindow = window.open(url, title, 
-      `
-      scrollbars=yes,
-      width=${w / systemZoom}, 
-      height=${h / systemZoom}, 
-      top=${top}, 
-      left=${left}
-      `
-    )
-
-    if (window.focus) newWindow.focus();
-}
-</script>
-<a href="#" onclick="openInPopupWindow(jsonSourceUrl,'Edit JSON',900,500)">Edit JSON</a>
-<script type="module">
-  import * as u from "https://jsutil37.github.io/jsutil/util.js";
-  waitForSymbol(async function () {
-	  await loadScriptFromTextAtUrl("https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js")
-		 $.getJSON("architecture.json", function (json) {
-        document.body.appendChild(renderjson(json));
-      });
-	}, '$')
-</script>
+      waitForSymbol(async function () {
+        await loadScriptFromTextAtUrl(
+          "https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js"
+        );
+        $.getJSON(jsonDeploymentUrl, function (json) {
+          document.body.appendChild(renderjson(json));
+        });
+      }, "$");
+    </script>
+  </body>
+</html>
