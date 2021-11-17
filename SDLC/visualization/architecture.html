@@ -1,7 +1,7 @@
 <script type="module">
   import * as u from "https://jsutil37.github.io/jsutil/util.js";
   waitForSymbol(async function () {
-	  await loadScript("https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js")
+	  await loadScriptFromTextAtUrl("https://raw.githubusercontent.com/caldwell/renderjson/master/renderjson.js")
 		 $.getJSON("architecture.json", function (json) {
         document.body.appendChild(renderjson(json));
       });
