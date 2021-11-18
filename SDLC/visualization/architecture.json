@@ -1,4 +1,14 @@
 {
   "client": {},
-  "server": { "server-side code": {}, "db": {} }
+  "server": {
+    "server-side code": {"php":{"regular expression syntax": "https://www.w3schools.com/php/php_regex.asp"}},
+    "databases": {
+      "mysql": {
+        "db editor": {
+          "localhost": "Start->WAMP->Open phpMyAdmin,login as root and password,db helpforf_db",
+          "production": ""
+        }
+      }
+    }
+  }
 }
