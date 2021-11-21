@@ -13,19 +13,19 @@
           "production": ""
         }
       },
-      "deployment": "zip folder 'server' and upload to public-html, extract to 'server' and then select all and drag to public-html",
-      "bugs faced": {
-        "different column name casing in dev and prod": {
-          "remedy": "made db error message regex case-insensitive"
-        },
-        "forgot php regex syntax": {
-          "remedy": "documented links to it"
-        },
-        "db version mismatch between dev and prod cause db error messages to slightly differ": {
-          "short-term remedy": "handled via regex OR pattern",
-          "long-term remedy": "downgrade local MySQL or ask hosting provider to update prod MySQL (TODO)"
-        }
-      }
+      "deployment": "zip folder 'server' and upload to public-html, extract to 'server' and then select all and drag to public-html"
+    }
+  },
+  "bugs faced": {
+    "different column name casing in dev and prod": {
+      "remedy": "made db error message regex case-insensitive"
+    },
+    "forgot php regex syntax": {
+      "remedy": "documented links to it"
+    },
+    "db version mismatch between dev and prod cause db error messages to slightly differ": {
+      "short-term remedy": "handled via regex OR pattern",
+      "long-term remedy": "downgrade local MySQL or ask hosting provider to update prod MySQL (TODO)"
     }
   }
 }
