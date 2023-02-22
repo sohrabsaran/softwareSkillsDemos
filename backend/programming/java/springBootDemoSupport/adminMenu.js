@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", init, false);
 function init() {
   // Create the html to insert
   const html = /*html*/ `
-   <nav class="navbar navbar-expand-lg bg-light" style="background:#ffcccc">
+   <nav class="navbar navbar-expand-lg" style="background:#ffcccc">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">XYZ (admin site)</a>
         <button
