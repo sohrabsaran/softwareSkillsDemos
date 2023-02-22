@@ -36,9 +36,6 @@ function init() {
               <a class="nav-link" href="/admin/tickets">Tickets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/tickets">Tickets</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link" href="/admin/payments">Payments</a>
             </li>
         </ul>
