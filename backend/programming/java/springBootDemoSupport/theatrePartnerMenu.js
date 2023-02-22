@@ -1,3 +1,6 @@
+window.addEventListener('DOMContentLoaded', init, false);
+
+function init() {
 // Create the new node to insert
 const newNode = document.createElement("span");
 newNode.innerHTML = "TODO: from theatrePartnerMenu.js"
@@ -7,3 +10,4 @@ const parentNode = document.body;
 
 let firstElementOfBody = body.firstElementChild;
 parentDiv.insertBefore(newNode, firstElementOfBody);
+}
