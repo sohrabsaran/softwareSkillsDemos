@@ -32,6 +32,15 @@ function init() {
             <li class="nav-item">
               <a class="nav-link" href="/admin/movies">Movies</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/tickets">Tickets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/tickets">Tickets</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin/payments">Payments</a>
+            </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item align-text-right">
