@@ -1,9 +1,8 @@
 window.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
-// Create the new node to insert
-const newNode = document.createElement("div");
-const innerHTML = /*html*/`
+// Create the html to insert
+const html = /*html*/`
 <!--
 <a href="/createMovieSchedule.html">New Movie Schedule</a> 
 <a href="/listMovieSchedules.html">Scheduled Movies</a>
@@ -68,13 +67,6 @@ const innerHTML = /*html*/`
         </div>
       </div>
     </nav>
-`
-newNode.innerHTML = innerHTML;
-
-// Get a reference to the parent node
-const parentNode = document.body;
-
-let firstElementOfBody = parentNode.firstElementChild;
-//parentNode.insertBefore(newNode, firstElementOfBody);
-  parentNode.insertAdjacentHTML('afterbegin',innerHTML)
+`;
+  document.body.insertAdjacentHTML('afterbegin',html);
 }
