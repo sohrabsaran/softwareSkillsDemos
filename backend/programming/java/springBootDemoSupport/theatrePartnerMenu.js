@@ -1,8 +1,10 @@
-window.addEventListener('DOMContentLoaded', init, false);
+window.addEventListener("DOMContentLoaded", init, false);
+
+//TODO: redirect to theatrePartnerLogin.html page if user is not logged in.
 
 function init() {
-// Create the html to insert
-const html = /*html*/`
+  // Create the html to insert
+  const html = /*html*/ `
    <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="#">XYZ</a>
@@ -29,6 +31,11 @@ const html = /*html*/`
             </li>
             <li class="nav-item">
               <a class="nav-link" href="./movieTimetables.html">Movie Timetables</a>
+            </li>
+        </ul>
+        <ul class="navbar-nav">
+            <li class="nav-item align-text-right">
+              <a class="nav-link" href="#" id="logoutLink">Logout</a>
             </li>
             <!--
             <li class="nav-item dropdown">
@@ -72,5 +79,28 @@ const html = /*html*/`
       </div>
     </nav>
 `;
-  document.body.insertAdjacentHTML('afterbegin',html);
+  document.body.insertAdjacentHTML("afterbegin", html);
+
+  waitForElement("logoutLink", (/** @type {HTMLElement} */ el) => {
+    el.addEventListener("click", () => {
+      localStorage.removeItem("theatrePartnerLoginId");
+      localStorage.removeItem("theatrePartnerLoginPassword");
+      window.location.href = "theatrePartnerLogin.html";
+    });
+  });
+}
+
+/**
+ * @param {string} id
+ * @param {(el: HTMLElement)=>void} thenFunction
+ */
+function waitForElement(id, thenFunction) {
+  const el = document.getElementById(id);
+  if (el == null) {
+    setTimeout(() => {
+      waitForElement(id, thenFunction);
+    }, 300);
+  } else {
+    thenFunction(el);
+  }
 }
