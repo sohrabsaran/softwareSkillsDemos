@@ -27,10 +27,10 @@ function init() {
             </li>
             -->
             <li class="nav-item">
-              <a class="nav-link" href="./movieSchedules.html">Movie Schedules</a>
+              <a class="nav-link" href="/admin/theatres">Theatres</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./movieTimetables.html">Movie Timetables</a>
+              <a class="nav-link" href="/admin/movies">Movies</a>
             </li>
         </ul>
         <ul class="navbar-nav">
@@ -83,9 +83,9 @@ function init() {
 
   waitForElement("logoutLink", (/** @type {HTMLElement} */ el) => {
     el.addEventListener("click", () => {
-      localStorage.removeItem("theatrePartnerLoginId");
-      localStorage.removeItem("theatrePartnerLoginPassword");
-      window.location.href = "theatrePartnerLogin.html";
+      localStorage.removeItem("adminLoginId");
+      localStorage.removeItem("adminLoginPassword");
+      window.location.href = "/admin/login";
     });
   });
 }
