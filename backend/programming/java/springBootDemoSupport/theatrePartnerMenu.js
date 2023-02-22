@@ -11,7 +11,7 @@ const innerHTML = /*html*/`
 -->
    <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Navbar</a>
+        <a class="navbar-brand" href="#">XYZ</a>
         <button
           class="navbar-toggler"
           type="button"
