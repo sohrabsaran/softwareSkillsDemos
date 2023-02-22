@@ -8,6 +8,6 @@ newNode.innerHTML = "TODO: from theatrePartnerMenu.js"
 // Get a reference to the parent node
 const parentNode = document.body;
 
-let firstElementOfBody = body.firstElementChild;
-parentDiv.insertBefore(newNode, firstElementOfBody);
+let firstElementOfBody = parentNode.firstElementChild;
+parentNode.insertBefore(newNode, firstElementOfBody);
 }
