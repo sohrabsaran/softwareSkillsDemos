@@ -2,7 +2,7 @@ window.addEventListener('DOMContentLoaded', init, false);
 
 function init() {
 // Create the new node to insert
-const newNode = document.createElement("span");
+const newNode = document.createElement("div");
 newNode.innerHTML = /*html*/`
 <!--
 <a href="/createMovieSchedule.html">New Movie Schedule</a> 
