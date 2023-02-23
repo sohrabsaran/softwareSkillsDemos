@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", init, false);
 
-//TODO: redirect to theatrePartnerLogin.html page if user is not logged in.
+//TODO: redirect to /theatre/login page if user is not logged in.
 
 function init() {
   // Create the html to insert
