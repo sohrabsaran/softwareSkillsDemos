@@ -1,4 +1,6 @@
 if(localStorage.getItem('adminPassword')==null) {
+  console.log('adminMenu.js: looks like admin user is not logged in');
+  debugger;
   localStorage.setItem('pageThatRedirectedToAdminLogin',window.location.href);
   window.location.href = '/admin-user/login';
 } else {
