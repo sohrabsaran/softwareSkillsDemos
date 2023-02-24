@@ -44,7 +44,7 @@ function init() {
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item align-text-right">
-              <a class="nav-link" href="#" id="logoutLink">Logout</a>
+              <a class="nav-link" href="/admin-user/login" id="logoutLink">Logout</a>
             </li>
             <!--
             <li class="nav-item dropdown">
@@ -88,28 +88,5 @@ function init() {
       </div>
     </nav>
 `;
-  document.body.insertAdjacentHTML("afterbegin", html);
-
-  waitForElement("logoutLink", (/** @type {HTMLElement} */ el) => {
-    el.addEventListener("click", () => {
-      localStorage.removeItem("adminLoginId");
-      localStorage.removeItem("adminLoginPassword");
-      window.location.href = "/admin/login";
-    });
-  });
-}
-
-/**
- * @param {string} id
- * @param {(el: HTMLElement)=>void} thenFunction
- */
-function waitForElement(id, thenFunction) {
-  const el = document.getElementById(id);
-  if (el == null) {
-    setTimeout(() => {
-      waitForElement(id, thenFunction);
-    }, 300);
-  } else {
-    thenFunction(el);
-  }
+  document.body.insertAdjacentHTML("afterbegin", html);  
 }
