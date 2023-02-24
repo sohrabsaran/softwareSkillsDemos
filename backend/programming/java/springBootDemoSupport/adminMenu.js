@@ -1,3 +1,4 @@
+debugger
 if(localStorage.getItem('adminPassword')==null) {
   console.log('adminMenu.js: looks like admin user is not logged in');
   debugger;
