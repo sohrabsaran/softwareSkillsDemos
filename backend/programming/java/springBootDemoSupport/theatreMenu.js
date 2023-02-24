@@ -36,6 +36,12 @@ function init() {
               <a class="nav-link" href="${baseUrl}">Home</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/theatres/update">Theatre</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/screens">Screens</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/movieSchedules">Movie Schedules</a>
             </li>
             <li class="nav-item">
