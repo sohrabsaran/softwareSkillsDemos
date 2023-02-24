@@ -1,6 +1,9 @@
-window.addEventListener("DOMContentLoaded", init, false);
-
-//TODO: redirect to /admin/login url if user is not logged in.
+if(localStorage.getItem('adminPassword')==null) {
+  localStorage.setItem('pageThatRedirectedToAdminLogin',window.location.href);
+  window.location.href = '/admin-user/login';
+} else {
+  window.addEventListener("DOMContentLoaded", init, false);  
+}
 
 function init() {
   // Create the html to insert
