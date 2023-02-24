@@ -1,13 +1,19 @@
-window.addEventListener("DOMContentLoaded", init, false);
-
-//TODO: redirect to /theatre/login page if user is not logged in.
+const passwordStorageKey = 'theatrePassword';
+const baseUrl = '/theatres';
+const brandName = 'XYZ'
+if(localStorage.getItem(passwordStorageKey)==null) {
+  localStorage.setItem('pageThatRedirectedToAdminLogin',window.location.href);
+  window.location.href = `${baseUrl}/login`;
+} else {
+  window.addEventListener("DOMContentLoaded", init, false);  
+}
 
 function init() {
   // Create the html to insert
   const html = /*html*/ `
    <nav class="navbar navbar-expand-lg bg-light">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">XYZ</a>
+        <a class="navbar-brand" href="#">${brandName}</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -23,19 +29,22 @@ function init() {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!--
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/theatres">Home</a>
+              <a class="nav-link active" aria-current="page" href="/example-url">ExampleMenuItemName</a>
             </li>
             -->
             <li class="nav-item">
-              <a class="nav-link" href="./movieSchedules.html">Movie Schedules</a>
+              <a class="nav-link" href="${baseUrl}">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./movieTimetables.html">Movie Timetables</a>
+              <a class="nav-link" href="/movieSchedules">Movie Schedules</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/movieTimetables">Movie Timetables</a>
             </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item align-text-right">
-              <a class="nav-link" href="#" id="logoutLink">Logout</a>
+              <a class="nav-link" href="/theatres/login" id="logoutLink">Logout</a>
             </li>
             <!--
             <li class="nav-item dropdown">
@@ -80,27 +89,4 @@ function init() {
     </nav>
 `;
   document.body.insertAdjacentHTML("afterbegin", html);
-
-  waitForElement("logoutLink", (/** @type {HTMLElement} */ el) => {
-    el.addEventListener("click", () => {
-      localStorage.removeItem("theatrePartnerLoginId");
-      localStorage.removeItem("theatrePartnerLoginPassword");
-      window.location.href = "theatrePartnerLogin.html";
-    });
-  });
-}
-
-/**
- * @param {string} id
- * @param {(el: HTMLElement)=>void} thenFunction
- */
-function waitForElement(id, thenFunction) {
-  const el = document.getElementById(id);
-  if (el == null) {
-    setTimeout(() => {
-      waitForElement(id, thenFunction);
-    }, 300);
-  } else {
-    thenFunction(el);
-  }
 }
