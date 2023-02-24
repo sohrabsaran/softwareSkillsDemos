@@ -30,6 +30,9 @@ function init() {
             </li>
             -->
             <li class="nav-item">
+              <a class="nav-link" href="/admin-user">Home</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/theatres/admin">Theatres</a>
             </li>
             <li class="nav-item">
