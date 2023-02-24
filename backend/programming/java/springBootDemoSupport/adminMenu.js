@@ -27,16 +27,16 @@ function init() {
             </li>
             -->
             <li class="nav-item">
-              <a class="nav-link" href="/admin/theatres">Theatres</a>
+              <a class="nav-link" href="/theatres/admin">Theatres</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/movies">Movies</a>
+              <a class="nav-link" href="/movies/admin">Movies</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/tickets">Tickets</a>
+              <a class="nav-link" href="/tickets/admin">Tickets</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/admin/payments">Payments</a>
+              <a class="nav-link" href="/payments/admin">Payments</a>
             </li>
         </ul>
         <ul class="navbar-nav">
