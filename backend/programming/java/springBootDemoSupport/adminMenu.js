@@ -1,6 +1,9 @@
-if(localStorage.getItem('adminPassword')==null) {
+const passwordStorageKey = 'adminPassword';
+const baseUrl = '/admin-user';
+const brandName = 'XYZ (admin site)'
+if(localStorage.getItem(passwordStorageKey)==null) {
   localStorage.setItem('pageThatRedirectedToAdminLogin',window.location.href);
-  window.location.href = '/admin-user/login';
+  window.location.href = `${baseUrl}/login`;
 } else {
   window.addEventListener("DOMContentLoaded", init, false);  
 }
@@ -10,7 +13,7 @@ function init() {
   const html = /*html*/ `
    <nav class="navbar navbar-expand-lg" style="background:#ffcccc">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">XYZ (admin site)</a>
+        <a class="navbar-brand" href="#">${brandName}</a>
         <button
           class="navbar-toggler"
           type="button"
@@ -26,11 +29,11 @@ function init() {
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <!--
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link active" aria-current="page" href="/example-url">ExampleMenuItemName</a>
             </li>
             -->
             <li class="nav-item">
-              <a class="nav-link" href="/admin-user">Home</a>
+              <a class="nav-link" href="${baseUrl}">Home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/theatres/admin">Theatres</a>
@@ -91,5 +94,5 @@ function init() {
       </div>
     </nav>
 `;
-  document.body.insertAdjacentHTML("afterbegin", html);  
+  document.body.insertAdjacentHTML("afterbegin", html);
 }
